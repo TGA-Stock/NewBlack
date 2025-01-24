@@ -381,7 +381,7 @@ Product property categories can be managed using the following services: 
 
 >**Note:** Product property categories can't be deleted.
 
-## Defining values in `ImportProducts`
+## Defining values in ImportProducts
 To add values for the custom product property we've just created, we use the `Content` object in `ImportProducts`: 
 
 ```json
@@ -408,7 +408,7 @@ Since our custom product property was just a boolean, our case is pretty simple.
 
 >**Note:**Since these product properties live in the content object, they can have different values for different languages.
 
-## Creating product properties in `ImportProducts`
+## Creating product properties in ImportProducts
 If we didn't have our property preconfigured, we could also just provide it in the `ImportProducts` message: 
 
 ```json 
