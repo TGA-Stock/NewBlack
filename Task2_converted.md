@@ -365,19 +365,15 @@ In order to give your properties custom names to be displayed in front ends, use
 ```
 Here, `LayerID` represents your contentlayer ID.
 
-### Additional services 
-- [SearchProductPropertyTypes](/link)
-- [DeleteProductPropertyType](/link)
-- [ListProductPropertyType](/link)
-- [DeleteProductPropertyType](/link)
+### Additional property types
+- [SearchProductPropertyType]
+- [DeleteProductPropertyType]
+- [ListProductPropertyType]
 
 ### Product property categories 
-
-Product property categories can be managed using the following services: 
-- [CreateProductPropertyCategory](/link)
-- [EditProductPropertyCategory](/link)
-- [ListProductPropertyCategories](/link)
-- [CreateProductPropertyCategory](/link)
+- [CreateProductPropertyCategory]
+- [EditProductPropertyCategory]
+- [ListProductPropertyCategory]
 
 >**Note:** Product property categories can't be deleted.
 
