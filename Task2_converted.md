@@ -409,7 +409,7 @@ Since our custom product property was just a boolean, our case is pretty simple.
 
 **Note:**Since these product properties live in the content object, they can have different values for different languages.
 
-## Creating product properties in `ImportProducts`
+## Creating product properties in `ImportProducts`
 If we didn't have our property preconfigured, we could also just provide it in the `ImportProducts` message: 
 
 ```json 
@@ -453,45 +453,26 @@ Using the `ProductPropertyType` called `CopyToParentProductPropertyTypeID`you ca
 
 For instance, if a size-level product is available in "S", "M", and "L", setting `CopyToParentProductPropertyTypeID` on the size property to `available_sizes` ensures that these values are copied to the parent (color-level) and grandparent (style-level) products under the `available_sizes` property. 
 
-```json 
-
-{ 
-
-  "CustomPropertyTypes": [ 
-
-    { 
-
-      "ProductPropertyTypeID": "size", 
-
-      "CopyToParentProductPropertyTypeID": "available_sizes", 
-
-      "DataType": 0, 
-
-      "IndexType": 0, 
-
-      "IsArray": false 
-
-    }, 
-
-    { 
-
-      "ProductPropertyTypeID": "color", 
-
-      "CopyToParentProductPropertyTypeID": "available_colors", 
-
-      "DataType": 0, 
-
-      "IndexType": 0, 
-
-      "IsArray": false 
-
-    } 
-
-  ] 
-
-} 
-
-``` 
+```json
+{
+  "CustomPropertyTypes": [
+    {
+      "ProductPropertyTypeID": "size",
+      "CopyToParentProductPropertyTypeID": "available_sizes",
+      "DataType": 0,
+      "IndexType": 0,
+      "IsArray": false
+    },
+    {
+      "ProductPropertyTypeID": "color",
+      "CopyToParentProductPropertyTypeID": "available_colors",
+      "DataType": 0,
+      "IndexType": 0,
+      "IsArray": false
+    }
+  ]
+}
+```
 
 This configuration automatically copies all distinct size values to their respective parents under `available_sizes`, as well as color. 
 
@@ -499,35 +480,21 @@ This configuration automatically copies all distinct size values to their respec
 
 From `SearchProducts`: 
 
-```json 
-
-{ 
-
-  "product_id": 164, 
-
-  "available_colors": [ 
-
-    "blue", 
-
-    "red" 
-
-  ], 
-
-  "available_sizes": [ 
-
-    "S", 
-
-    "M", 
-
-    "XL", 
-
-    "XS" 
-
-  ] 
-
-} 
-
-``` 
+```json
+{
+  "product_id": 164,
+  "available_colors": [
+    "blue",
+    "red"
+  ],
+  "available_sizes": [
+    "S",
+    "M",
+    "XL",
+    "XS"
+  ]
+}
+```
 
 ### Notes 
 
@@ -555,42 +522,24 @@ Both accept a comma-separated list of `ProductPropertyTypes`, such as `color_nam
 
 When configured, the resulting product content includes a `variations` array: 
 
-```json 
-
-{ 
-
-  "product_id": 123, 
-
-  "variations": [ 
-
-    { 
-
-      "product_id": 456, 
-
-      "type": "child", 
-
-      "color_name": "Cyan", 
-
-      "color_hex_value": "0000FF" 
-
-    }, 
-
-    { 
-
-      "product_id": 789, 
-
-      "type": "child", 
-
-      "color_name": "Bright red", 
-
-      "color_hex_value": "FF0000" 
-
-    } 
-
-  ] 
-
+```json
+{
+  "product_id": 123,
+  "variations": [
+    {
+      "product_id": 456,
+      "type": "child",
+      "color_name": "Cyan",
+      "color_hex_value": "0000FF"
+    },
+    {
+      "product_id": 789,
+      "type": "child",
+      "color_name": "Bright red",
+      "color_hex_value": "FF0000"
+    }
+  ]
 } 
-
 ``` 
 
 ### Differences from `CopyToParentProductPropertyTypeID` 
