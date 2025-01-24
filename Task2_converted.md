@@ -216,7 +216,8 @@ To edit products, just use the same request and alter the information. EVA will 
 
 ## Deleting products 
 
-To delete products, use the same request, but add the `"IsDeleted": true` property on the products and set it to true. The products will then be deleted. It's good to know that the products actually remain in EVA, their status will just be: *Deleted* and they won't be visible on the front ends anymore. 
+To delete products, use the same request, but add the `"IsDeleted": true` property on the products and set it to true. The products will then be deleted. It's good to know that the products actually remain in EVA, their status will just be: *Deleted* and they won't be visible on the front ends anymore.
+
 
 
 # Product 
@@ -437,7 +438,7 @@ If we didn't have our property preconfigured, we could also just provide it in t
 }
 ```
 
-After this message, the producrt property will be known in EVA and the correct value will be set on the product.
+After this message, the product property will be known in EVA and the correct value will be set on the product.
 
 ## Copying properties to parents 
 
@@ -538,15 +539,13 @@ When configured, the resulting product content includes a `variations` array: 
 ```
 Product 123 has two variations available in blue and red, with the type property indicating if they are children or siblings. If the type is "child," the variation is one level below product 123, while if it's "sibling," the variations are on the same level, sharing the same parent.
 
-***Differences from CopyToParentProductPropertyTypeID***
+**Differences from CopyToParentProductPropertyTypeID**
 
 There is a direct reference to the ID of the child/sibling through a product_id property, along with the values of the content. With the CopyToParentProductPropertyTypeID commit, you only get a distinct list of values, with no relation to products. While having just the values is useful for filtering and aggregation, it doesn't work for display or linking.
 
 The contents of variation are entirely unindexed, meaning it's not possible to filter anything inside of it. It's purely intended as enrichment data, not for search or filtering.
 
 >**Note:**
-By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You specifically have to request the variations field to include it.
-
-Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
+By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You specifically have to request the variations field to include it. Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
 
 
