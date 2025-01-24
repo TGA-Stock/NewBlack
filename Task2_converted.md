@@ -39,8 +39,7 @@ Your products will always have an `EvaID` assigned upon creation. Your response 
   ] 
 } 
 ```
-
-**Note:** Products with different `BackendIDs` can have the same `CustomID`, for example when the latter replaces the first as a successor. ::: 
+> **Note:** Products with different `BackendIDs` can have the same `CustomID`. For example, the latter can replace the first as a successor.
 
 ## Product types 
 
@@ -174,7 +173,7 @@ Product hierarchy is defined by the `Variations` property. This in turn contai
   ]
 }
 ```
-**danger Note:** Both `color` and `size` are NOT native EVA product properties. These have to be created before they can be used. See [Custom product properties](/link). 
+>**Note:** Both `color` and `size` are NOT native EVA product properties. These have to be created before they can be used. See [Custom product properties](/link). 
 
 ::: 
 
@@ -218,6 +217,7 @@ To edit products, just use the same request and alter the information. EVA will 
 ## Deleting products 
 
 To delete products, use the same request, but add the `"IsDeleted": true` property on the products and set it to true. The products will then be deleted. It's good to know that the products actually remain in EVA, their status will just be: *Deleted* and they won't be visible on the front ends anymore. 
+
 
 # Product 
 
@@ -313,9 +313,7 @@ Here is what this would look like using our NewBorn T-Shirt example:
 }
 ```
 
-**Important Note:**
-- The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth.
-- For the BlobID you can refer to [Blob management](/link).
+>**Important Note:** The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth. For the BlobID you can refer to [Blob management](/link).
 
 ## Properties 
 
@@ -380,7 +378,7 @@ Product property categories can be managed using the following services: 
 - [ListProductPropertyCategories](/link)
 - [CreateProductPropertyCategory](/link)
 
-**Note:** Product property categories can't be deleted.
+>**Note:** Product property categories can't be deleted.
 
 ## Defining values in `ImportProducts`
 To add values for the custom product property we've just created, we use the `Content` object in `ImportProducts`: 
@@ -407,7 +405,7 @@ To add values for the custom product property we've just created, we use the `C
 
 Since our custom product property was just a boolean, our case is pretty simple. 
 
-**Note:**Since these product properties live in the content object, they can have different values for different languages.
+>**Note:**Since these product properties live in the content object, they can have different values for different languages.
 
 ## Creating product properties in `ImportProducts`
 If we didn't have our property preconfigured, we could also just provide it in the `ImportProducts` message: 
@@ -451,7 +449,9 @@ Using the `ProductPropertyType` called `CopyToParentProductPropertyTypeID`you ca
 
 ### Example Usage 
 
-For instance, if a size-level product is available in "S", "M", and "L", setting `CopyToParentProductPropertyTypeID` on the size property to `available_sizes` ensures that these values are copied to the parent (color-level) and grandparent (style-level) products under the `available_sizes` property. 
+For instance, if a size-level product is available in "S", "M", and "L", setting `CopyToParentProductPropertyTypeID` on the size property to `available_sizes` ensures that these values are copied to the parent (color-level) and grandparent (style-level) products under the `available_sizes` property.
+
+Example of using this feature through ImportProducts:
 
 ```json
 {
@@ -476,9 +476,7 @@ For instance, if a size-level product is available in "S", "M", and "L", setting
 
 This configuration automatically copies all distinct size values to their respective parents under `available_sizes`, as well as color. 
 
-### Example Response 
-
-From `SearchProducts`: 
+Example Response From `SearchProducts`: 
 
 ```json
 {
@@ -497,11 +495,7 @@ From `SearchProducts`: 
 ```
 
 
-### Notes 
-
-- Changing the value of `CopyToParentProductPropertyTypeID` for an existing property type affects ONLY products provided in the same request. To apply changes to all products, use the `ComposeProducts` service for a full recompose. 
-
-- Properties created via `CopyToParentProductPropertyTypeID` are automatically indexed and set as array properties for filtering and aggregation. 
+>**Note:** Changing the value of `CopyToParentProductPropertyTypeID` for an existing property type affects ONLY products provided in the same request. To apply changes to all products, use the `ComposeProducts` service for a full recompose.
 
 ## Including content of children to parents/siblings 
 
@@ -530,27 +524,29 @@ When configured, the resulting product content includes a `variations` array: 
     {
       "product_id": 456,
       "type": "child",
-      "color_name": "Cyan",
+      "color_name": "Blue",
       "color_hex_value": "0000FF"
     },
     {
       "product_id": 789,
-      "type": "child",
-      "color_name": "Bright red",
+      "type": "sibling",
+      "color_name": "Red",
       "color_hex_value": "FF0000"
     }
   ]
-} 
-``` 
+}
+```
+Product 123 has two variations available in blue and red, with the type property indicating if they are children or siblings. If the type is "child," the variation is one level below product 123, while if it's "sibling," the variations are on the same level, sharing the same parent.
 
-### Differences from `CopyToParentProductPropertyTypeID` 
+***Differences from CopyToParentProductPropertyTypeID***
 
-1.  There is a direct reference to the ID of the child/sibling through a product_idproperty, and the values of the content. With the CopyToParentProductPropertyTypeID commit, you only have a distinct list of values, no relation to products. Having just the values is useful for filtering/aggregation, but not for display/linking. 
+There is a direct reference to the ID of the child/sibling through a product_id property, along with the values of the content. With the CopyToParentProductPropertyTypeID commit, you only get a distinct list of values, with no relation to products. While having just the values is useful for filtering and aggregation, it doesn't work for display or linking.
 
-1.  The contents of variation is entirely unindexed, it's not possible to filter on anything inside of it. It's purely meant as enrichment data, not for search/filtering. 
+The contents of variation are entirely unindexed, meaning it's not possible to filter anything inside of it. It's purely intended as enrichment data, not for search or filtering.
 
-### Notes 
+>**Note:**
+By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You specifically have to request the variations field to include it.
 
-- By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property, you specifically have to select it by requesting the variations field. 
+Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
 
-- Changing the value of these two settings has no immediate effect, only when a product is composed is the value of this setting checked. So, after changing it you should do a ComposeProducts. We don't do this automatically as this is quite an expensive operation and you might want to test it by composing a few products first.
+
