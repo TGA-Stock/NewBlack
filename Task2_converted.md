@@ -496,6 +496,7 @@ From `SearchProducts`: 
 }
 ```
 
+
 ### Notes 
 
 - Changing the value of `CopyToParentProductPropertyTypeID` for an existing property type affects ONLY products provided in the same request. To apply changes to all products, use the `ComposeProducts` service for a full recompose. 
