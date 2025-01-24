@@ -1,6 +1,6 @@
 # Pushing products 
 
-**EVA is not a product information management system. We tried, we weren't particularly good at it, and customers were using other systems as their golden record anyways. So, we stopped trying to be something we're not. Nowadays, we EXPECT our customers to use some other PIM system, and we just provide a neat little service to push all of your product information into EVA.** 
+EVA is not a product information management system. We tried, we weren't particularly good at it, and customers were using other systems as their golden record anyways. So, we stopped trying to be something we're not. Nowadays, we EXPECT our customers to use some other PIM system, and we just provide a neat little service to push all of your product information into EVA.
 
 ## Single product 
 
