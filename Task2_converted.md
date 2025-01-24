@@ -40,9 +40,7 @@ Your products will always have an `EvaID` assigned upon creation. Your response 
 } 
 ```
 
-:::info Notes  
-
-Products with different `BackendIDs` can have the same `CustomID`, for example when the latter replaces the first as a successor. ::: 
+**Note:** Products with different `BackendIDs` can have the same `CustomID`, for example when the latter replaces the first as a successor. ::: 
 
 ## Product types 
 
@@ -176,9 +174,7 @@ Product hierarchy is defined by the `Variations` property. This in turn contai
   ]
 }
 ```
-:::danger Note 
-
-Both `color` and `size` are NOT native EVA product properties. These have to be created before they can be used. See [Custom product properties](/link). 
+**danger Note:** Both `color` and `size` are NOT native EVA product properties. These have to be created before they can be used. See [Custom product properties](/link). 
 
 ::: 
 
@@ -317,39 +313,37 @@ Here is what this would look like using our NewBorn T-Shirt example:
 }
 ```
 
-:::note\
-- The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth.\
-- For the BlobID you can refer to [Blob management](/link).\
-::: 
+**Important Note:**
+- The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth.
+- For the BlobID you can refer to [Blob management](/link).
 
 ## Properties 
 
 You might be wondering about the meaning of each property, but it's quite self- explanatory. Here's a breakdown: 
 
-| Property | Description |\
-| ---- | ------- |\
-| ID | This is the product ID. |\
-| TaxCode | Give the correct [tax code](/link) for your product. | 
-
-| LanguageID\
-displayed. |\
-| ShortDescription | A brief description of your product. | | ImageURL | The URL to your product image. | 
+| Property          | Description                                                        |
+|-------------------|--------------------------------------------------------------------|
+| **ID**            | This is the product ID.                                            |
+| **TaxCode**       | Give the correct [tax code](/link) for your product.               |
+| **LanguageID**    | The ID of the language in which the product description is displayed. |
+| **ShortDescription** | A brief description of your product.                             |
+| **ImageURL**      | The URL to your product image. 
 
 # Custom product properties 
 
-| The language in which the short description and image will be 
-
-**The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties on root level first.** 
+The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties on root level first.
 
 ## Creating product properties 
 
 To create a custom product property, use [CreateProductPropertyType](/link): 
 
-```json { 
-
-"TypeID": "eu_ecolabel", "CategoryID": "default", "DataType": 3 
-
-} ``` 
+```json
+{
+  "TypeID": "eu_ecolabel",
+  "CategoryID": "default",
+  "DataType": 3
+}
+```
 
 Except for `TypeID` and `CategoryID`, this service works the exact same as our [CustomField](/link) services. 
 
@@ -357,103 +351,95 @@ Except for `TypeID` and `CategoryID`, this service works the exact same as ou
 
 In order to give your properties custom names to be displayed in front ends, use [EditProductPropertyType]( /link): 
 
-```json { 
+```json
+{
+  "ID": "eu_ecolabel",
+  "Edits": [
+    {
+      "LayerID": 1,
+      "Content": {
+        "display_name": "European economy label"
+      }
+    }
+  ]
+}
+```
+Here, `LayerID` represents your contentlayer ID.
 
-"ID": "eu_ecolabel", "Edits": [ 
-
-{\
-"LayerID": 1, 
-
-"Content": {\
-"display_name": "European economy label" 
-
-} } 
-
-] } 
-
-```\
-Here, `LayerID` represents your contentlayer ID.### Additional services 
-
-- [SearchProductPropertyTypes]( /link) - [DeleteProductPropertyType]( /link) - [ListProductPropertyType]( /link)\
-- [DeleteProductPropertyType]( /link) 
+### Additional services 
+- [SearchProductPropertyTypes](/link)
+- [DeleteProductPropertyType](/link)
+- [ListProductPropertyType](/link)
+- [DeleteProductPropertyType](/link)
 
 ### Product property categories 
 
 Product property categories can be managed using the following services: 
+- [CreateProductPropertyCategory](/link)
+- [EditProductPropertyCategory](/link)
+- [ListProductPropertyCategories](/link)
+- [CreateProductPropertyCategory](/link)
 
-- [CreateProductPropertyCategory]( /link) - [EditProductPropertyCategory]( /link) - [ListProductPropertyCategories]( /link) - [CreateProductPropertyCategory]( /link) 
+**Note:** Product property categories can't be deleted.
 
-:::info Note\
-Product property categories can't be deleted. ::: 
+## Defining values in `ImportProducts`
+To add values for the custom product property we've just created, we use the `Content` object in `ImportProducts`: 
 
-## Defining values in `ImportProducts`\
-To add values for the custom product property we've just created, we use the 
+```json
+{
+  "SystemID": "PimCore",
+  "Products": [
+    {
+      "ID": "121",
+      "Name": "NewBorn T-Shirt",
+      "TaxCode": "High",
+      "Content": [
+        {
+          "CustomContent": {
+            "eu_ecolabel": true
+          }
+        }
+      ]
+    }
+  ]
+}
+```
 
-`Content` object in `ImportProducts`: 
+Since our custom product property was just a boolean, our case is pretty simple. 
 
-```json { 
+**Note:**Since these product properties live in the content object, they can have different values for different languages.
 
-"SystemID": "PimCore", "Products": [ 
+## Creating product properties in `ImportProducts`
+If we didn't have our property preconfigured, we could also just provide it in the `ImportProducts` message: 
 
-{\
-"ID": "121",\
-"Name": "NewBorn T-Shirt", "TaxCode": "High", "Content": [ 
+```json 
+{
+  "SystemID": "PimCore",
+  "CustomPropertyTypes": [
+    {
+      "ProductPropertyTypeID": "eu_ecolabel",
+      "CategoryID": "default",
+      "DataType": 3
+    }
+  ],
+  "Products": [
+    {
+      "ID": "121",
+      "Name": "NewBorn T-Shirt",
+      "TaxCode": "High",
+      "Content": [
+        {
+          "CustomContent": {
+            "eu_ecolabel": true
+          }
+        }
+      ]
+    }
+  ]
+}
+```
 
-{\
-"CustomContent": { 
-
-"eu_ecolabel": true } 
-
-} ] 
-
-} ] 
-
-} ``` 
-
-Since 
-
-our custom product property was just a boolean, our case is pretty simple. 
-
-:::info Note\
-Since these product properties live in the content object, they can have different values for different languages.\
-::: 
-
-## Creating product properties in `ImportProducts`\
-If we didn't have our property preconfigured, we could also just provide it in the 
-
-`ImportProducts` message: 
-
-```json { 
-
-"SystemID": "PimCore", "CustomPropertyTypes": [ 
-
-{ 
-
-"ProductPropertyTypeID": "eu_ecolabel", "CategoryID": "default",\
-"DataType": 3 
-
-} ], 
-
-"Products": [ { 
-
-"ID": "121",\
-"Name": "NewBorn T-Shirt", "TaxCode": "High", "Content": [ 
-
-{\
-"CustomContent": { 
-
-"eu_ecolabel": true } 
-
-} ] 
-
-} ] 
-
-} ``` 
-
-After\
-will be set on the product. 
-
-this message, the product property will be known in EVA and the correct value 
+After this message, the producrt property will be known in EVA and the correct value will be set on the product.
 
 ## Copying properties to parents 
 
