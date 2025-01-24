@@ -199,7 +199,7 @@ Let's assume you made an API call to update 100 products but out of this only 90
     "RequestID": "1cc5912d5059455594a992d1c17c1a5b"
   }
 }
-``` 
+```
 
 ### Validation failure 
 
@@ -212,8 +212,7 @@ Let's assume you made an API call to update 100 products but out of this only 90
     "RequestID": "2161b89f451b4c47901c74f714c55280"
   }
 }
-``` 
-
+```
 The message contains technical-human-readable text that can be used for debugging. 
 
 ## Editing products 
@@ -224,139 +223,99 @@ To edit products, just use the same request and alter the information. EVA will 
 
 To delete products, use the same request, but add the `"IsDeleted": true` property on the products and set it to true. The products will then be deleted. It's good to know that the products actually remain in EVA, their status will just be: *Deleted* and they won't be visible on the front ends anymore. 
 
-<!-- 
-
---> 
-
 # Product 
 
-**Product 
-
-`Content` 
+**Product Content can be included in the 'ImportProducts' service using the 'Content' array on product level.**
 
 ## Images 
 
 We will illustrate how this works using a simple product with a simple image first: 
 
-```json { 
-
-"SystemID": "InsomniaImport", "Products": [ 
-
-{\
-"ID": "1",\
-"Name": "Unisex T-shirt", "TaxCode": "High", "Content": [ 
-
-{\
-"Images": [ 
-
-{\
-"ImageUrl": "<https://picsum.photos/200>" 
-
-} ] 
-
-} ] 
-
-} ] 
-
-} ``` 
+```json
+{
+  "SystemID": "InsomniaImport",
+  "Products": [
+    {
+      "ID": "1",
+      "Name": "Unisex T-shirt",
+      "TaxCode": "High",
+      "Content": [
+        {
+          "Images": [
+            {
+              "ImageUrl": "https://picsum.photos/200"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Languages 
 
 Note how the `Content` property in our example request is an array, that's because you can add content for multiple languages: 
 
-```json { 
+```json  
+{
+  "SystemID": "InsomniaImport",
+  "Products": [
+    {
+      "ID": "1",
+      "Name": "Unisex T-shirt",
+      "TaxCode": "High",
+      "Content": [
+        {
+          "LanguageID": "nl",
+          "ShortDescription": "Unisex heavyweight t-shirt met geborduurd Nerd logo."
+        }
+      ]
+    }
+  ]
+}
+```
 
-"SystemID": "InsomniaImport", "Products": [ 
-
-{ 
-
-content 
-
-content can be included in the `ImportProducts` service using the array on product level.** 
-
-"ID": "1",\
-"Name": "Unisex T-shirt", "TaxCode": "High", "Content": [ 
-
-{\
-"LanguageID": "nl",\
-"ShortDescription": "Unisex heavyweight t-shirt met geborduurd Nerd 
-
-logo.",\
-{ 
-
-logo.",\
-{ 
-
-} ] 
-
-} ] 
-
-} ] 
-
-} ``` 
-
-## Native 
-
-content options 
-
-"Images": [\
-"ImageUrl": "<https://picsum.photos/>" 
-
-} ] 
-
-}, { 
-
-"LanguageID": "en",\
-"ShortDescription": "Unisex heavyweight t-shirt with embroidered Nerd 
-
-"Images": [\
-"ImageUrl": "<https://picsum.photos/>" 
-
-EVA ships\
-front-ends. If you are looking for possibilities beyond our native options though, see [Custom product properties](/link). 
+## Native content options 
+EVA ships some native product properties which have some functionalities in our front-ends. If yuo are looking for possibilities beyond our native options though, see[Custome product properties] (/link).
 
 ## USP Text and USP Blobs 
 
 Using the `UniqueSellingPointTexts` and `UniqueSellingPointBlobIDs` you can display product information on **POS** and **Companion App** directly in the search result by providing the respective input to the referred to properties. 
 
-Here is what this would look like using our NewBorn T-Shirt example: ```json\
-{ 
+Here is what this would look like using our NewBorn T-Shirt example: 
 
-"SystemID": "PimCore", "Products": [ 
-
-{\
-"ID": "121",\
-"Name": "NewBorn T-Shirt", "TaxCode": "High", 
-
-some native product properties which have some functionalities in our 
-
-    "Content": [\
-       {
-
-"LanguageID": "nl",\
-"ShortDescription": "NewBorn t-shirt voor de kleintjes.", "Images": [ 
-
-{\
-"ImageUrl": "<https://i.ibb.co/tDVGybm/newborn-logo.jpg>" 
-
-} ], 
-
-"UniqueSellingPointTexts": [ "Green choice",\
-"Vegan" 
-
-], "UniqueSellingPointBlobIDs": [ 
-
-"290c4a1e-3ac0-4d69-b7d2-c622a55352e2", 
-
-"62cc81df-c975-48de-bba4-0ddf0e85cead" 
-
-] } 
-
-] } 
-
-] } 
-
-``` 
+```json
+{
+  "SystemID": "PimCore",
+  "Products": [
+    {
+      "ID": "121",
+      "Name": "NewBorn T-Shirt",
+      "TaxCode": "High",
+      "Content": [
+        {
+          "LanguageID": "nl",
+          "ShortDescription": "NewBorn t-shirt voor de kleintjes.",
+          "Images": [
+            {
+              "ImageUrl": "https://i.ibb.co/tDVGybm/newborn-logo.jpg"
+            }
+          ],
+          "UniqueSellingPointTexts": [
+            "Green choice",
+            "Vegan"
+          ],
+          "UniqueSellingPointBlobIDs": [
+            "290c4a1e-3ac0-4d69-b7d2-c622a55352e2",
+            "62cc81df-c975-48de-bba4-0ddf0e85cead"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 :::note\
 - The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth.\
