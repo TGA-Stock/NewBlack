@@ -19,7 +19,7 @@ A simple, single product upload through `ImportProducts` would look something li
 }
 ```
 
-In the above example, we create a product called 'NewBorn T-shirt' with a `BackendID` (ID) and a `TaxCode`. We use `SystemID` to identify the system from which we are importing our products. 
+In the above example, we create a product called 'Unisex T-shirt' with a `BackendID` (ID) and a `TaxCode`. We use `SystemID` to identify the system from which we are importing our products. 
 
 In addition to the BackendID we provide in the `ID` field, a product can have a `CustomID`. If you don't explicitly specify a `CustomID`, it will be the same as your `BackendID`. 
 
