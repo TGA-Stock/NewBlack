@@ -190,30 +190,28 @@ Let's assume you made an API call to update 100 products but out of this only 90
 
 ### Unknown tax code 
 
-```json { 
-
-"Error": {\
-"Message": "Product 123 uses unknown TaxCode", "Type": "ImportProducts:UnknownTaxCode", "Code": "JMJVDCGE",\
-"RequestID": "1cc5912d5059455594a992d1c17c1a5b" 
-
-} } 
-
+```json
+{
+  "Error": {
+    "Message": "Product 123 uses unknown TaxCode",
+    "Type": "ImportProducts:UnknownTaxCode",
+    "Code": "JMJVDCGE",
+    "RequestID": "1cc5912d5059455594a992d1c17c1a5b"
+  }
+}
 ``` 
 
 ### Validation failure 
 
-```json { 
-
-"Error": {\
-"Message": "The provided request did not pass validation. Failures: Reason: 
-
-MissingField, ProductID: , Field: PrimitiveName, Message: \nReason: MissingField, ProductID: , Field: PrimitiveName, Message: \nReason: DuplicateBackendID, ProductID: , Field: BackendID, Message: 123", 
-
-"Type": "ImportProducts:ValidationFailures", "Code": "BMIYFDBY",\
-"RequestID": "2161b89f451b4c47901c74f714c55280" 
-
-} } 
-
+```json
+{
+  "Error": {
+    "Message": "The provided request did not pass validation. Failures:\n- Reason: MissingField, ProductID: , Field: PrimitiveName\n- Reason: MissingField, ProductID: , Field: PrimitiveName\n- Reason: DuplicateBackendID, ProductID: , Field: BackendID, Message: 123",
+    "Type": "ImportProducts:ValidationFailures",
+    "Code": "BMIYFDBY",
+    "RequestID": "2161b89f451b4c47901c74f714c55280"
+  }
+}
 ``` 
 
 The message contains technical-human-readable text that can be used for debugging. 
