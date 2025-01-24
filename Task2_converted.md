@@ -1,1128 +1,663 @@
-# Converted Document
+# Pushing products 
 
-#  P u shi n g pro du ct s
- 
- 
- 
-**E VA i s no t a  pro du ct in fo rmat io n man a gemen tsy st em.  W e t ri ed,  w ew eren 't  pa rti cu la rl y 
-go o da t i t,  an d cu sto mers w ere u sin g ot h er sy st ems a s t h ei r gol den  reco rd an y wa y s.  So , w e 
-st o pp ed t ry in g to  be so meth in g w e're no t.  No wa da y s,  w eE X PE CT ou r cu st o mers to
- 
-u se 
-so me o th er P IM sy st em, a n d w ej u st  pro v ide a n ea t l it tl e serv i ce to  pu sh al l o f yo u r produ ct  
-i nf o rma ti on  int o E VA. **
- 
-# #  Sin gl e pro du ct
- 
-A si mpl e,  sin gl e pro du ct u plo a d th ro u gh `I mpo rtP ro du ct s`  wo u l d lo o k so met hi n gl i ke th i s:
- 
-` `` j son
- 
-{
- 
-  
-" Sy st emI D" :  "I n so mni aI mpo rt " ,
- 
-  
-" P ro du ct s" : [
- 
-    
-{
- 
-      
-" I D" :  "0 0 01 " ,
- 
-      
-" Na me":  " Uni sex T
--
-sh i rt " ,
- 
-      
-" Ta xCo de":  " Hi gh "
- 
-    
+**EVA is not a product information management system. We tried, we weren't particularly good at it, and customers were using other systems as their golden record anyways. So, we stopped trying to be something we're not. Nowadays, we EXPECT our customers to use some other PIM system, and we just provide a neat little service to push all of your product information into EVA.** 
+
+## Single product 
+
+A simple, single product upload through `ImportProducts` would look something like this: 
+
+```json 
+{ 
+  "SystemID": "InsomniaImport", 
+  "Products": [ 
+    { 
+      "ID": "0001", 
+      "Name": "Unisex T-shirt", 
+      "TaxCode": "High" 
+    } 
+  ] 
 }
- 
-  
-]
- 
-}
- 
-` ``
- 
-I n t h ea bov e exa mpl e, w e crea t ea  pro du ct  ca ll ed'New Bo rn  T
--
-shi rt 'w it h a ` Ba cken dI D` 
-(I D) an da  ` Ta xCo de`.  W e u se ` Sy st emI D` to  iden ti f y th e sy st em f ro m whi ch w e a re 
-i mpo rt in g o u r pro du ct s.
- 
-I n a ddi ti on  to t h e Ba cken dI Dw e pro vi dei n t h e` ID`  fi el d,  a pro du ct  can  ha v ea  
-` Cu st o mI D`.  If  yo u  don 't  expli cit l y speci f y a ` Cu st o mI D` , it  wi ll  bet h e sa mea s yo u r 
-` Ba cken dI D` .
- 
-# # # #  Respon se
- 
-Yo u r pro du ct s wi ll a lw a y sh av e an  `E va I D`  a ssi gned u po n crea ti on .  Yo u r respon se w il l 
-i n clu de th ese E VA I Ds,  gro u pedby w hi ch  pro du cts w ere u pd a t edo r crea t ed.  Wh en  
-pro du ct sa re crea t ed, t h ey a re al so a lw ay s u pd ated.  Add i ti on al ly , w e ret u rn a  
-` Ba cken dI D` /` E
-v aI D` ma ppi n g.
- 
-` `` j son
- 
-{
- 
-  
-" U pda t edP ro du ctI Ds" :  [
- 
-    
-1
- 
-  
-],
- 
-  
-" Crea t edP ro du ctI Ds" :  [
- 
-    
-1
- 
-  
-],
- 
-  
-" P ro du ct Ma p" : [
- 
-    
-{
- 
-      
-" Ba cken dI D" : " 0 00 1 ",
- 
-      
-" I D" :  1
- 
-    
-}
- 
-  
-]
- 
-}
- 
-` ``
- 
-: : : in fo  No t es 
- 
-P ro du ct sw it h dif f erent  ` Ba cken dI Ds` ca n ha v eth e sa me `
-Cu sto mI D` , fo r exa mpl ew h en  
-t h e la tt er repla ces t h ef i rst a s a su ccesso r.  : : :
- 
-# #  P rodu ct t y pes
- 
-A pro du ct  ca n h av e sev era l t y pes:
- 
-To  descri be y ou r pro du ct a s bei n go n eo r mo re of t h ese t y pes, w e u se t h e` Ty pe` o bj ect :
- 
-` `` j son
- 
-{
- 
-  
-" Sy st emI D" :  "P i mCo re" ,
- 
-  
-" P ro du ct s" : [
- 
-    
-{
- 
-      
-" I D" :  "1 2 1" ,
- 
-      
-" Na me":  " New Bo rn T
--
-Sh i rt " ,
- 
-      
-" Ta xCo de":  " Hi gh ",
- 
-      
-" Ty pe" : {
- 
-       
-" St o ck" : t rue
- 
-      
-}
- 
-    
-}
- 
-  
-]
- 
-}
- 
-` ``
- 
-# #  Ba rcodes
- 
-To  a dd a ba rco det o a  pro du ct,  u se th e **Ba rco des** 
-el emen t .  Yo u  ca n a l so  speci fy  a 
-**Ba rco de** (a n di t s **Qu an ti t y **) fo r an  exi sti n g[un it  of  mea su re](li n k)i n th e ca ll t o a ll ow  
-f o r ea sy sca nn in g.
- 
-< Ta bs>
- 
-< Ta bIt em va l u e= " j so n 1"  la bel= " Add in g Ba rco des" >
- 
-` `` j son
- 
-{
- 
-{
- 
-" Sy st emI D" : " Pi mCo re" , " P ro du ct s" : [
- 
-" I D" : " 12 1 ",
- 
-" Na me" : " New Bo rn  T
--
-Shi rt ",  " Ta xCo de" : " Hi gh " , " Ba rco des" :  [
- 
-" 9 7 80 2 01 3 79 57 "
- 
-] }
- 
-]
- 
-}
- 
-` ``
- 
-< /Ta bIt em>
- 
-< Ta bIt em va l u e= " j so n 2"  la bel= " Add in g U OM Ba rco des" >
- 
-` `` j son
- 
-{
- 
-" Sy st emI D" : " Pi mCo re" , " P ro du ct s" : [
- 
-{
- 
-" I D" : " 12 1 ",
- 
-" Na me" : " New Bo rn  T
--
-Shi rt ",  " Ta xCo de" : " Hi gh " , " Ba rco des" :  [
- 
-" 9 7 80 2 01 3 79 57 "
- 
-] " U ni t Ba rco des" :  [
- 
-" Ba rco de" :" 4 56 6 56 97 8 7 ",  " Qua nt it y ": " 48 " , " Un it Of Mea su reI D" : " 5"
- 
-] }
- 
-]
- 
-}
- 
-` ``
- 
-< /Ta bIt em>
- 
-< /Ta bs>
- 
- 
-# #  P rodu ct h i era rch y
- 
-P ro du ct hi era rch y i s defin ed by t h e` Va ri at io n s`pro pert y . Thi s in  tu rn  co nt ai n sa  n ew  
-` P ro du ct s`  pro pert y wh ere ev ery  pro du ct sh ou l dco n ta in a  va l u ef o r th e v a ri at io n.  Th e 
-f ol lo wi n g requ est  con tai n s a pro du ct  wit h f ou r si zes:
- 
-` `` j son  {
- 
-" Sy st emI D" : " Pi mCo re" , " P ro du ct s" : [
- 
-{
- 
-" I D" : " 12 1 ",
- 
-" Na me" : " New Bo rn  T
--
-shi rt ",
- 
-" Ta xCo de" :  
-" Hi gh " , " Va ri at io n s" : {
- 
-" P ro perty " : " si ze" , " Lo gi ca l Lev el" :  " si ze" ,  "P ro du cts" :  [
- 
-{
- 
-" I D" : " 12 1
--
-9 78 0 20 13 7 95 7 " , " Na me" :  "New Bo rn  T
--
-sh i rt ",  " Va ria ti on Val u es" :  [
- 
-{
- 
-" Va l u e":  " 3
--
-6 mon th s"
- 
-} ]
- 
-},  {
- 
-" I D" : " 12 1
--
-9 78 0 20 13 7 95 8 " , " Na me" :  "New Bo rn  T
--
-sh i rt ",  "
-Va ria ti on Val u es" :  [
- 
-{
- 
-" Va l u e":  " 6
--
-12  mo nt h s"
- 
-} ]
- 
-},  {
- 
-" I D" : " 12 1
--
-9 78 0 20 13 7 95 9 " , " Na me" :  "New Bo rn  T
--
-sh i rt ",  " Va ria ti on Val u es" :  [
- 
-{
- 
-" Va l u e":  " 12
--
-1 8 mon th s"
- 
-} ]
- 
-},  {
- 
-" I D" : " 12 1
--
-9 78 0 20 13 7 96 0 " , " Na me" :  "New Bo rn  T
--
-sh i rt ",  " Va ria ti on Val u es" :  [
- 
-{
- 
-" Va l u e":  " 18
--
-2 4 mon th s"
- 
-} ]
- 
-} ]
- 
-} }
- 
-] }
- 
-` ``
- 
-: : : dan ger Not e
- 
-Bo th  ` co lo r` a n d ` si ze`  a re NOT na ti v e E VA pro du ct  pro perti es.  Th ese h a v et o  be creat ed 
-bef o re th ey  can  be u sed.  See [Cu st o m pro du ct  pro pert i es](/l in k).
- 
-:::
- 
-# #  Fai l u re respon ses
- 
-# # #  Pa rti al  fai l u re
- 
-Let 's a ssu me y o u  ma de an  API  cal l to  u pda t e 10 0 pro du ct s but o u t of  th i so nl y 9 0  pro du ct s 
-w ere u pd a t ed. Th e remain in g 1 0 fa il ed to  u pda t ein  E VA.  Th e respo n se wo u ld th en  co nt ai n 
-t h e pa rt s of t h e ca ll  th at f ai l ed, a nd th e rea son  why  th ey  fa il ed.
- 
-# # #  Un kn ow n ta x co de
- 
-` `` j son  {
- 
-" E rro r" : {
- 
-" Messa ge" :  " P ro du ct  12 3 u ses u n kn ow n  Ta xCo de" ,  " Ty pe":  
-" I mpo rt P ro du ct s: Un kno wn Ta xCo de",  " Co de":  " JMJVDCGE " ,
- 
-" Requ est I D" : " 1 cc5 91 2 d5 0 59 4 55 5 94 a9 9 2 d1 c1 7 c1 a 5 b"
- 
-} }
- 
-` ``
- 
-# # #  Val i da ti on f ai lu re
- 
-` `` j son  {
- 
-" E rro r" : {
- 
-" Messa ge" :  " Th e prov i ded 
-requ est di d no t  pa ss v al i da ti on .  Fa il u res:  Rea son :
- 
-Mi ssi n gFi el d,  P ro du ctI D: ,  Fi el d: P ri mi ti v eNa me,Messa ge:  
-\
-n Rea so n :  Mi ssi n gFi el d,  
-P ro du ctI D: ,  Fi el d:  P ri mi ti v eNa me, Messa ge:  
-\
-n Rea so n:  Du pl i cat eBa cken dID,  P ro du ctI D: ,  
-Fi el d:  Ba cken dI D, Messa ge:  1 2 3" ,
- 
-" Ty pe" :  "I mpo rt P ro du ct s: Va li dat io n Fa il u res" ,  " Code" :  " BMIYFDBY" ,
- 
-" Requ est I D" : " 2 16 1 b8 9 f4 51 b4 c4 79 01 c7 4f 7 14 c5 52 8 0 "
- 
-} }
- 
-` ``
- 
-Th e messa ge co n ta in s t echn i ca l
--
-hu man
--
-rea da ble t ext  th at  can  be u sed fo r debu ggin g.
- 
-# #  E di ti n g pro du ct s
- 
-To  edit  pro du ct s, j u st u se t h e sa me requ est a nd al t er th e in fo rma ti on .  E VAw il l kn ow  to  
-u pd a t et h e pro du ct if  th e speci fi ed `I D` i sa l rea dy  in  u se.
- 
-# #  Del eti n g pro du ct s
- 
-To  del et e pro du ct s, u se t h e sa me requ est ,  but  add t h e` "I sDel et ed" : t rue` pro perty  on t h e 
-pro du ct sa n d set it  to t rue.  Th epro du ct s w il l th en be del et ed.  It 's go od to  kno w t ha t th e 
-pro du ct sa ct ua ll y  remai n in  E VA, t h ei r sta t u sw il l ju st  be:  *Del et ed* an d t
-h ey w on 't  be 
-v i si bl e on  th e f ro nt  en dsa ny mo re.
- 
-<!
---
- 
---
->
- 
-#  P ro du ct
- 
-**P ro du ct
- 
-` Co nt ent `
- 
-# #  I ma ges
- 
-W e w il l  
-i ll u st ra t eh ow  th i sw o rks u sin g a  si mpl e pro du ct w it h a  si mpl ei ma ge fi rst :
- 
-` `` j son  {
- 
-" Sy st emI D" : " In so mn ia I mpo rt" ,  "P ro du ct s" :  [
- 
-{
- 
-" I D" : " 1" ,
- 
-" Na me" : " Un i sex T
--
-sh i rt" ,  " Ta xCo de" : " Hi gh " , " Con t ent " : [
- 
-{
- 
-" I ma ges" :  [
- 
-{
- 
-" I ma geU rl " : "
-ht t ps: //pi csu m. ph ot o s/2 00
-"
- 
-} ]
- 
-} ]
- 
-} ]
- 
-} ` ``
- 
-# #  Lan gu a ges
- 
-No t eh ow  th e ` Co nt en t`  pro pert y i n o u r exa mpl erequ est  i s an  a rra y , th at 's beca u se y o u 
-ca n a dd  con t en t f o r mu lt i pl e la n gua ges:
- 
-` `` j son  {
- 
-"
-Sy st emI D" : " In so mn ia I mpo rt" ,  "P ro du ct s" :  [
- 
-{
- 
-co n t en t
- 
-co n t en t  ca n  bein cl u dedi n th e `I mpo rt P ro du ct s` serv i ce u si n gt h ea rra y on  pro du ct  
-l ev el . **
- 
-" I D" : " 1" ,
- 
-" Na me" : " Un i sex T
--
-sh i rt" ,  " Ta xCo de" : " Hi gh " , " Con t ent " : [
- 
-{
- 
-" La n gua geI D" : " nl " ,
- 
-" Sh o rt Descri pt io n" : " U ni sex h ea vy w ei gh t t
--
-sh i rt  met  gebo rdu u rd Nerd
- 
-l o go. " ,
- 
-{
- 
-l o go. " ,
- 
-{
- 
-} ]
- 
-} ]
- 
-} ]
- 
-} ` ``
- 
-# #  Nat iv e
- 
-co n t en t o pti on s
- 
-" I ma ges" :  [
- 
-" I ma geU rl " : "
-ht t ps: //pi csu m. ph ot o s/
-"
- 
-} ]
- 
-},  {
- 
-" La n gua geI D" : " en ",
- 
-" Sh o rt Descri pt io n" : " U ni sex h ea vy w ei gh t t
--
-sh i rt  wi th  embroi dered Nerd
- 
-" I ma ges" :  [
- 
-" I ma geU rl " : "
-ht t ps: //pi csu m. ph ot o s/
-"
- 
-E VA sh i ps
- 
-f ron t
--
-en ds. I f y ou  a rel oo ki n gfo r po ssi bi li ti es beyo n do u rn at iv e o pt io n st ho u gh,  see 
-[Cu st o m pro du ct  pro pert i es](/l in k).
- 
-# #  U SP  Text an d U SP Blo bs
- 
-U si n gt h e` U ni qu eSel lin gP oi nt Text s` a n d ` Un iqueSel l i n gPo in t Blo bI Ds` y ou  can  di spl ay  
-pro du ct i nf o rma tio n o n **P OS**a n d**Co mpa nio n  App ** di rectl y i n th e sea rch  resu l t by  
-pro v i din g th e respect i v e in put  to t h e ref erred to  pro pert i es.
- 
-Here i s w ha t t hi s wo u ld lo o kl i ke u sin g o u r New Born  T
--
-Sh i rt  exa mpl e:  `` `j son
- 
-{
- 
-" Sy st emI D" : " Pi mCo re" , " P ro du ct s" : [
- 
-{
- 
-" I D" : " 12 1 ",
- 
-" Na me" : " New Bo rn  T
--
-Shi rt ",  " Ta xCo de" : " Hi gh " ,
- 
-so me n at iv e pro du ct  pro pert i es wh i ch  ha v e so me f un ct io na li ti es in  ou r
- 
-     
-" Co nt ent " :  [
- 
-       
-{
- 
- 
-" La n gua geI D" : " nl " ,
- 
-" Sh o rt Descri pt io n" : " New Bo rn  t
--
-shi rt v oo r de kl ein tj es. " ,  "I ma ges" :  [
- 
-{
- 
-" I ma geU rl " : "
-ht t ps: //i .i bb . co /t DVGy bm/n ew bo rn
--
-lo go .j pg
-"
- 
-} ],
- 
-" U ni qu eSel li n gPo in t Text s":  [ " Green  ch oi ce" ,
- 
-" Vega n "
- 
-],  " Un i qu eSell in gP oi nt Blo bI Ds":  [
- 
-" 2 9 0 c4a 1 e
--
-3a c0
--
-4 d69
--
-b7 d2
--
-c6 22 a5 5 35 2 e2 ",
- 
-" 6 2 cc8 1 df
--
-c9 7 5
--
-4 8 de
--
-bb a 4
--
-0 ddf 0 e8 5 cea d"
- 
-] }
- 
-] }
- 
-] }
- 
-` ``
- 
-: : : no t e
- 
--
- 
-Th e t ext a n d blo bs a reo rder sen si ti v e.  So  in o u rexa mpl e,  " Green  ch oi ce"  wi ll  li n kt o th e 
-f i rst  Bl obI D, " Vega n"  to t h e seco n d,  an d so  fo rth .
- 
--
- 
-Fo r t h e Bl obI D
- 
-y o u ca n ref er to  [Blo b ma na gemen t ](/li n k).
- 
-:::
- 
-# #  P ropert i es
- 
-Yo u  mi gh t be wo n derin g abo ut  th e mean in g of  each  pro perty ,  but i t 's qui t e self
--
- 
-expl a na to ry .  Here's a  brea kdo wn :
- 
-| P ro perty  | Descri pti on  |
- 
-| 
-----
- 
-| 
--- --- --
- 
-|
- 
-| I D | Thi s i s th e produ ct I D.  |
- 
-| Ta xCo de | Gi v e th e co rrect  [t a x co de](/l in k) f o r y ou r pro du ct.  |
- 
-| La n gua geI D
- 
-di spl ay ed.  |
- 
-| Sh o rt Descri pt ion  | A bri ef  descri pti on o f y ou r produ ct .  | | I ma geU RL | Th e U RL to y o u r 
-pro du ct i ma ge.  |
- 
-#  Cu st o m pro du ct  pro perti es
- 
-| Th e la n gua ge in  wh i ch  th e sho rt  descri pt io n an di ma ge wi ll  be
- 
-**Th e `I mpo rt P ro du ct s` serv i ce ca n be u sed to  fil l  cu sto m pro du ct pro perti es th at  al rea dy 
-exi st  in  E VA. I t i s al so  po ssi bl et o fi ll  pro pert i es tha t  do n ot  y et exi st , i f y ou  defi n et h ese 
-pro pert i es on  ro ot  l ev el  fi rst . **
- 
-# #  Crea ti n g pro du ct pro perti es
- 
-To  crea t ea  cu sto m produ ct  pro pert y,  u se [Crea t eP ro du ctP ro perty Ty pe](/l in k):
- 
-` `` j son  {
- 
-" Ty peI D" : " eu _eco la bel ",  " Cat ego ryI D" : " defa u lt " ," Da ta Ty pe" : 3
- 
-} ` ``
- 
-E xcept  f o r ` TypeI D` an d` Ca t ego ryI D` , t hi s serv ice w o rks t h e exa ct sa me a so u r 
-[Cu st o mFi el d](/li n k) serv i ces.
- 
-# # #  Di spl ay  va l u es fo r cu sto m pro pert i es
- 
-I n o rder to  giv e y ou r pro perti es cu st o m na mes t obe di spl ay ed in f ron t  en ds,  u se 
-[E di tP ro du ct P ro pert y Ty pe]( /li n k):
- 
-` `` j son  {
- 
-" I D" : " eu _eco la bel ",  " E dit s" :  [
- 
-{
- 
-" La y erI D" :  1,
- 
-" Co nt en t" :  {
- 
-" di spla y _na me" : " E u ro pea n eco no my l abel "
- 
-} }
- 
-] }
- 
-` ``
- 
-Here,  ` La y erID`  represen t s yo u r co nt en tl ay er I D.# # #  Add it io na l serv i ces
- 
--
- 
-[Sea rch P ro du ctP ro perty Ty pes]( /l in k) 
--
- 
-[Del et eP ro du ct P ro pert y Ty pe]( /l in k) 
--
- 
-[Li st P ro du ct P ro pert y Ty pe]( /l in k)
- 
--
- 
-[Del et eP ro du ctP ro perty Ty pe]( /l in k)
- 
-# # #  P ro du ct pro perty  cat ego ri es
- 
-P ro du ct pro perty  cat ego ri es can  be man a ged u sin g th e fo ll ow in g serv i ces:
- 
--
- 
-[Crea t eP ro du ctP ro pert y Ca t ego ry ]( /l in k) 
--
- 
-[E dit Pro du ct P ro pert y Ca t ego ry ]( /l in k) 
--
- 
-[Li st P ro du ct P ro pert y Cat ego ri es]( /li n k) 
--
- 
-[Crea t ePro du ct P ro pert y Ca t ego ry ]( /l in k)
- 
-: : : in fo  No t e
- 
-P ro du ct pro perty  cat ego ri es can 't  be del et ed.  :: :
- 
-# #  Defi ni n g va lu es i n `I mpo rt P rodu ct s`
- 
-To  a dd va l u es fo rt h e cu sto m pro du ct  pro pert y w e'v e j u st  creat ed,  w eu se t h e
- 
-` Co nt ent `  
-o bj ect in ` I mpo rt P ro du ct s` :
- 
-` `` j son  {
- 
-" Sy st emI D" : " Pi mCo re" , " P ro du ct s" : [
- 
-{
- 
-" I D" : " 12 1 ",
- 
-" Na me" : " New Bo rn  T
--
-Shi rt ",  " Ta xCo de" : " Hi gh " , "Co n t en t ":  [
- 
-{
- 
-" Cu st o mCon t ent ":  {
- 
-" eu _eco l a bel" : t rue }
- 
-} ]
- 
-} ]
- 
-} ` ``
- 
-Si n ce
- 
-o u r cu sto m pro du ct  pro pert y w a sj u st a  bo ol ean , o u r ca se i s pret t y si mpl e.
- 
-: : : in fo  No t e
- 
-Si n ce th ese pro du ct  pro perti es l iv e in  th e con t en t o bj ect,  th ey  can h av e dif f erent  va l u esf o r 
-di ff eren t l an gu a ges.
- 
-:::
- 
-# #  Crea ti n g pro du ct pro perti es in  `I mpo rt P ro du cts`
- 
-I f w e di dn 't ha v e ou r pro perty  precon fi gu red,  w e co u l d al so j u st  pro vi de it  in t h e
- 
-` I mpo rt P ro du ct s`  messa ge:
- 
-` `` j son  {
- 
-" Sy st emI D" : " Pi mCo re" , " Cu st omP ro perty Ty pes" : [
- 
-{
- 
-" P ro du ct P ro pert y Ty peID" : " eu _eco l abel " , " Cat egory I D" : " defa u lt " ,
- 
-" Da ta Ty pe" : 3
- 
-} ],
- 
-" P ro du ct s" :  [ {
- 
-" I D" : " 12 1 ",
- 
-" Na me" : "
-New Bo rn  T
--
-Shi rt ",  " Ta xCo de" : " Hi gh " , "Co n t en t ":  [
- 
-{
- 
-" Cu st o mCon t ent ":  {
- 
-" eu _eco l a bel" : t rue }
- 
-} ]
- 
-} ]
- 
-} ` ``
- 
-Af t er
- 
-w i ll  be set o n th e pro du ct .
- 
-t hi s messa ge,  t h e pro du ct pro pert y wi ll  be kno wn i n E VA an d th e co rrect v al u e
- 
- 
-# #  Co pyi n g pro perti es t o pa rent s
- 
-# # #  Ov ervi ew
- 
-On  an  e
--
-co mmerce si t e ov erv i ew pa ge,  yo u t y pi cal l y w an t to  di spl ay  col o ro r sty l e
--
-l ev el 
-pro du ct si n st ead of  si ze
--
-l ev el pro du ct s.  Ho w ev er,  y ou  st ill  wa nt  to  pro vi de fi lt ers o n 
-a v ai la bl e co lo rs an d si zes.  Th i s da ta i s o ft en no t  presen t  a t th e st yl e o r colo r 
-l ev el u nl ess 
-expl i ci tl y pro vi ded.
- 
-U si n gt h e` P ro du ct P ro pert y Type`  cal l ed` Co py To P a ren t P ro du ctP ro perty Ty peI D` yo u  can  
-ref er t o t h eI Do f an ot h er propert y w ho se v al u e wil l  be co pi edt o it s pa rent .
- 
-# # #  E xampl e U sa ge
- 
-Fo r in st an ce,  if a  si ze
--
-l ev el pro du ct  i sa va il a bl e in " S" ,  " M", a n d" L" ,  sett in g 
-` Co py To Pa ren t P ro du ct P ro perty Ty peI D` o n th e size pro pert y t o ` av ai la bl e_si zes`  en su res 
-t ha t t h ese v al u es a re copi edt o t h e pa rent  (col o r
--
-lev el ) a nd gran dp a rent  (sty l e
--
-l ev el ) 
-pr
-o du ct s un der th e `a va il a bl e_si zes`  pro perty .
- 
-` `` j son
- 
-{
- 
-  
-" Cu st o mP ro perty Ty pes" :  [
- 
-    
-{
- 
-      
-" P ro du ct P ro pert y Ty peI D":  " si ze",
- 
-      
-" Co py To Pa ren tP ro du ct P ro pert y Ty peI D" : " av ai la bl e_si zes" ,
- 
-      
-" Dat a Ty pe" : 0 ,
- 
-      
-" In dexTy pe" : 0 ,
- 
-      
-" I sArra y" : f al se
- 
-    
-},
- 
-    
-{
- 
-      
-" P ro du ct P ro pert y Ty peI D":  " col o r" ,
- 
-      
-" Co py To Pa ren tP ro du ct P ro pert y Ty peI D" : " av ai la bl e_col o rs" ,
- 
-      
-" Dat a Ty pe" : 0 ,
- 
-      
-" In dexTy pe" : 0 ,
- 
-      
-" I sArra y" : f al se
- 
-    
-}
- 
-  
-]
- 
-}
- 
-` ``
- 
-Th i s con fi gu rat io n a ut o ma ti cal ly  co pi es a ll  di st in ct  si ze va l u est o t h ei r respect i v e pa ren t s 
-u n der `a va il a bl e_si zes` ,  a sw el l a s colo r.
- 
-# # #  E xampl e Respo n se
- 
-Fro m ` Sea rchP ro du ct s` :
- 
-` `` j son
- 
-{
- 
-  
-" pro du ct _i d" : 1 6 4,
- 
-  
-" av ai la bl e_col o rs" : [
- 
-    
-" bl u e" ,
- 
-    
-" red"
- 
-  
-],
- 
-  
-" av ai la bl e_si zes" :  [
- 
-    
-" S",
- 
-    
-" M" ,
- 
-    
-"X L" ,
- 
-    
-"X S"
- 
-  
-]
- 
-}
- 
-` ``
- 
- 
- 
-# # #  No t es
- 
- 
- 
--
- 
-Ch a n gi n gt h e va lu e of  ` Co py To P a ren t P ro du ctP ro pert y Ty peI D` fo r an  exi sti n g pro pert y 
-t y pe af f ect s ONLY pro du ct s prov i dedi n th e sa merequ est .  To a pp ly  cha n ges to  al l 
-pro du ct s, u se t h e` Co mpo seP ro du ct s` serv i ce fo r a f ul l  
-reco mpo se.
- 
--
- 
-P ro pert i es creat ed v ia ` Co py To Pa ren tP ro du ct P ro pert y Ty peI D` a re au to mat i cal ly i n dexed 
-a n d set a s a rra y  pro perti es f o r fi lt eri n ga n d a ggrega ti on .
- 
- 
- 
-# #  In cl u di n g co nt en t of  chi ldren  to  pa ren t s/si bl ings
- 
- 
- 
-# # #  Ov ervi ew
- 
- 
- 
-Th i sf ea t u re en ha n ces di spl a y ca pabil it i es by a ll ow i n g ch il do r si bl in g con t ent t o  be 
-i n clu ded in t h e pa ren t pro du ct .  Wh il e th e prev io us f ea t u ref o cu ses on  fil t erin g an d 
-a ggrega t i on , th i sf u n ct io na li t y i s pu rel y f o rdi spla y pu rpo ses.
- 
- 
- 
-# # #  Con fi gu rat io n
- 
- 
- 
-Tw o  sett in gs a re u sed to  defi n et hi s beha v io r:
- 
- 
- 
--
- 
-` P I M: Co mpo si ti on : Va ri ati on P ro pert i esTo Co py :Ch i l dren `
- 
--
- 
-` P I M: Co mpo si ti on : Va ri ati on P ro pert i esTo Co py :Si bl in gs`
- 
- 
- 
-Bo th  a ccept a  comma
--
-sepa rat ed li st o f ` P ro du ctP ro pert y Ty pes` ,  su ch a s 
-` co lo r_na me, col o r_h ex_v a l u e` .
- 
- 
- 
-# # #  E xampl e U sa ge
- 
- 
- 
-W h en  co nf i gu red, t h e resu lt in g produ ct  co nt en t in cl u des a ` va ria ti on s` a rray :
- 
- 
- 
-` `` j son
- 
-{
- 
-  
-" pro du ct _i d" : 1 2 3,
- 
-  
-" va ria ti on s" :  [
- 
-    
-{
- 
-      
-" pro du ct _i d" : 4 5 6,
- 
-      
-" ty pe" :  " ch il d" ,
- 
-      
-" col o r_n a me" : " Cy an " ,
- 
-      
-" col o r_h ex_v a l u e":  "0 0 00 FF"
- 
-    
-},
- 
-    
-{
- 
-      
-" pro du ct _i d" : 7 8 9,
- 
-      
-" ty pe" :  " ch il d" ,
- 
-      
-" col o r_n a me" : " Bri gh t  red",
- 
-      
-" col o r_h ex_v a l u e":  " FF00 0 0"
- 
-    
-}
- 
-  
-]
- 
-}
- 
-` ``
- 
-# # #  Di ff eren ces f ro m` Co py To Pa ren tP ro du ct P ropert y Ty peI D`
- 
- 
- 
-1.
- 
-Th ere i s a  di rect  ref eren cet o t h eI Do f t h e ch il d/sibl in g th ro u gh  a pro du ct _i d 
-pro pert y , an d th e va l u eso f t h e co nt en t.  Wi th  th e 
-Co py To Pa rent P rodu ct P ro pert y Ty peI D co mmit ,  you  o nl y ha v e a di sti n ct l i st of  
-v a l u es, n o rel at io n to  produ ct s.  Ha vi n gj u st t h ev a
-l u es i s u sef ul  fo r 
-f il t erin g/a ggrega t io n,  but  no t fo r di spl ay /l in kin g.
- 
-2.
- 
-Th e co nt ent s of  va ria ti on  i s
- 
-en ti rel y u ni n dexed, i t 's n o t po ssi bl e to f il t er on a ny th in g 
-i n si deo f it . I t 's pu rely  mean t a s en ri ch ment  da ta , n ot  fo r sea rch /fil t erin g.
- 
-# # #  No t es
- 
- 
- 
--
- 
-By  def a ul t,  va ria ti on s a ren ot  ret u rn ed by  Sea rchP ro du ct so r oth er serv i ces t ha t a ccept  an  
-I n clu dedFi el ds pro pert y , y ou  speci fi cal l y ha v e to sel ect  i t  by  requ est in g th e va ria ti on s fi el d.
- 
--
- 
-Ch a n gin g  th e  va lue o f th es e  tw o s e tting s  ha s n o  imm e dia te  e ffe ct
-, on l y wh en a  
-pro du ct i s co mpo sed i s th e va l u eo f th i s sett in g ch ecked.  So ,  af t er ch an gin g it  yo u  sho ul d 
-do  a Co mpo seP ro du ct s. W e don 't  do t hi s a ut o mat i cal ly  a st hi s i s qu it e an  expen si v e 
-o pera ti on a n dy o u mi gh t w an t t o t est i t by  co mposi n g a f ew  pro du ct s 
-fi rst .
- 
- 
- 
+```
+
+In the above example, we create a product called 'NewBorn T-shirt' with a `BackendID` (ID) and a `TaxCode`. We use `SystemID` to identify the system from which we are importing our products. 
+
+In addition to the BackendID we provide in the `ID` field, a product can have a `CustomID`. If you don't explicitly specify a `CustomID`, it will be the same as your `BackendID`. 
+
+#### Response 
+
+Your products will always have an `EvaID` assigned upon creation. Your response will include these EVA IDs, grouped by which products were updated or created. When products are created, they are also always updated. Additionally, we return a `BackendID`/`EvaID` mapping. 
+
+```json 
+{ 
+  "UpdatedProductIDs": [1], 
+  "CreatedProductIDs": [1], 
+  "ProductMap": [ 
+    { 
+      "BackendID": "0001", 
+      "ID": 1 
+    } 
+  ] 
+} 
+```
+
+:::info Notes  
+
+Products with different `BackendIDs` can have the same `CustomID`, for example when the latter replaces the first as a successor. ::: 
+
+## Product types 
+
+A product can have several types: 
+
+To describe your product as being one or more of these types, we use the `Type` object: 
+
+```json 
+{ 
+  "SystemID": "PimCore", 
+  "Products": [ 
+    { 
+      "ID": "121", 
+      "Name": "NewBorn T-Shirt", 
+      "TaxCode": "High", 
+      "Type": { 
+        "Stock": true 
+      } 
+    } 
+  ] 
+} 
+```
+## Barcodes 
+
+To add a barcode to a product, use the **Barcodes** element. You can also specify a **Barcode** (and its **Quantity**) for an existing [unit of measure](link) in the call to allow for easy scanning. 
+
+```json 
+<Tabs>
+  <TabItem value="json1" label="Adding Barcodes">
+    <pre>
+      {
+        "SystemID": "PimCore",
+        "Products": [
+          {
+            "ID": "121",
+            "Name": "NewBorn T-Shirt",
+            "TaxCode": "High",
+            "Barcodes": [
+              "978020137957"
+            ]
+          }
+        ]
+      }
+    </pre>
+  </TabItem>
+</Tabs>
+```
+```json 
+<Tabs>
+  <TabItem value="json2" label="Adding UOM Barcodes">
+    <pre>
+      {
+        "SystemID": "PimCore",
+        "Products": [
+          {
+            "ID": "121",
+            "Name": "NewBorn T-Shirt",
+            "TaxCode": "High",
+            "Barcodes": [
+              "978020137957"
+            ],
+            "UnitBarcodes": [
+              {
+                "Barcode": "4566569787",
+                "Quantity": "48",
+                "UnitOfMeasureID": "5"
+              }
+            ]
+          }
+        ]
+      }
+    </pre>
+  </TabItem>
+</Tabs>
+```
+## Product hierarchy 
+
+Product hierarchy is defined by the `Variations` property. This in turn contains a new `Products` property where every product should contain a value for the variation. The following request contains a product with four sizes: 
+
+```json { 
+
+"SystemID": "PimCore", "Products": [ 
+
+{\
+"ID": "121",\
+"Name": "NewBorn T-shirt", 
+
+"TaxCode": "High", "Variations": { 
+
+"Property": "size", "LogicalLevel": "size", "Products": [ 
+
+{\
+"ID": "121-978020137957", "Name": "NewBorn T-shirt", "VariationValues": [ 
+
+{\
+"Value": "3-6 months" 
+
+} ] 
+
+}, { 
+
+"ID": "121-978020137958", "Name": "NewBorn T-shirt", "VariationValues": [ 
+
+{\
+"Value": "6-12 months" 
+
+} ] 
+
+}, { 
+
+"ID": "121-978020137959", "Name": "NewBorn T-shirt", "VariationValues": [ 
+
+{\
+"Value": "12-18 months" 
+
+} ] 
+
+}, { 
+
+"ID": "121-978020137960", "Name": "NewBorn T-shirt", "VariationValues": [ 
+
+{\
+"Value": "18-24 months" 
+
+} ] 
+
+} ] 
+
+} } 
+
+] } 
+
+```\
+:::danger Note 
+
+Both `color` and `size` are NOT native EVA product properties. These have to be created before they can be used. See [Custom product properties](/link). 
+
+::: 
+
+## Failure responses 
+
+### Partial failure 
+
+Let's assume you made an API call to update 100 products but out of this only 90 products were updated. The remaining 10 failed to update in EVA. The response would then contain the parts of the call that failed, and the reason why they failed. 
+
+### Unknown tax code 
+
+```json { 
+
+"Error": {\
+"Message": "Product 123 uses unknown TaxCode", "Type": "ImportProducts:UnknownTaxCode", "Code": "JMJVDCGE",\
+"RequestID": "1cc5912d5059455594a992d1c17c1a5b" 
+
+} } 
+
+``` 
+
+### Validation failure 
+
+```json { 
+
+"Error": {\
+"Message": "The provided request did not pass validation. Failures: Reason: 
+
+MissingField, ProductID: , Field: PrimitiveName, Message: \nReason: MissingField, ProductID: , Field: PrimitiveName, Message: \nReason: DuplicateBackendID, ProductID: , Field: BackendID, Message: 123", 
+
+"Type": "ImportProducts:ValidationFailures", "Code": "BMIYFDBY",\
+"RequestID": "2161b89f451b4c47901c74f714c55280" 
+
+} } 
+
+``` 
+
+The message contains technical-human-readable text that can be used for debugging. 
+
+## Editing products 
+
+To edit products, just use the same request and alter the information. EVA will know to update the product if the specified `ID` is already in use. 
+
+## Deleting products 
+
+To delete products, use the same request, but add the `"IsDeleted": true` property on the products and set it to true. The products will then be deleted. It's good to know that the products actually remain in EVA, their status will just be: *Deleted* and they won't be visible on the front ends anymore. 
+
+<!-- 
+
+--> 
+
+# Product 
+
+**Product 
+
+`Content` 
+
+## Images 
+
+We will illustrate how this works using a simple product with a simple image first: 
+
+```json { 
+
+"SystemID": "InsomniaImport", "Products": [ 
+
+{\
+"ID": "1",\
+"Name": "Unisex T-shirt", "TaxCode": "High", "Content": [ 
+
+{\
+"Images": [ 
+
+{\
+"ImageUrl": "<https://picsum.photos/200>" 
+
+} ] 
+
+} ] 
+
+} ] 
+
+} ``` 
+
+## Languages 
+
+Note how the `Content` property in our example request is an array, that's because you can add content for multiple languages: 
+
+```json { 
+
+"SystemID": "InsomniaImport", "Products": [ 
+
+{ 
+
+content 
+
+content can be included in the `ImportProducts` service using the array on product level.** 
+
+"ID": "1",\
+"Name": "Unisex T-shirt", "TaxCode": "High", "Content": [ 
+
+{\
+"LanguageID": "nl",\
+"ShortDescription": "Unisex heavyweight t-shirt met geborduurd Nerd 
+
+logo.",\
+{ 
+
+logo.",\
+{ 
+
+} ] 
+
+} ] 
+
+} ] 
+
+} ``` 
+
+## Native 
+
+content options 
+
+"Images": [\
+"ImageUrl": "<https://picsum.photos/>" 
+
+} ] 
+
+}, { 
+
+"LanguageID": "en",\
+"ShortDescription": "Unisex heavyweight t-shirt with embroidered Nerd 
+
+"Images": [\
+"ImageUrl": "<https://picsum.photos/>" 
+
+EVA ships\
+front-ends. If you are looking for possibilities beyond our native options though, see [Custom product properties](/link). 
+
+## USP Text and USP Blobs 
+
+Using the `UniqueSellingPointTexts` and `UniqueSellingPointBlobIDs` you can display product information on **POS** and **Companion App** directly in the search result by providing the respective input to the referred to properties. 
+
+Here is what this would look like using our NewBorn T-Shirt example: ```json\
+{ 
+
+"SystemID": "PimCore", "Products": [ 
+
+{\
+"ID": "121",\
+"Name": "NewBorn T-Shirt", "TaxCode": "High", 
+
+some native product properties which have some functionalities in our 
+
+    "Content": [\
+       {
+
+"LanguageID": "nl",\
+"ShortDescription": "NewBorn t-shirt voor de kleintjes.", "Images": [ 
+
+{\
+"ImageUrl": "<https://i.ibb.co/tDVGybm/newborn-logo.jpg>" 
+
+} ], 
+
+"UniqueSellingPointTexts": [ "Green choice",\
+"Vegan" 
+
+], "UniqueSellingPointBlobIDs": [ 
+
+"290c4a1e-3ac0-4d69-b7d2-c622a55352e2", 
+
+"62cc81df-c975-48de-bba4-0ddf0e85cead" 
+
+] } 
+
+] } 
+
+] } 
+
+``` 
+
+:::note\
+- The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth.\
+- For the BlobID you can refer to [Blob management](/link).\
+::: 
+
+## Properties 
+
+You might be wondering about the meaning of each property, but it's quite self- explanatory. Here's a breakdown: 
+
+| Property | Description |\
+| ---- | ------- |\
+| ID | This is the product ID. |\
+| TaxCode | Give the correct [tax code](/link) for your product. | 
+
+| LanguageID\
+displayed. |\
+| ShortDescription | A brief description of your product. | | ImageURL | The URL to your product image. | 
+
+# Custom product properties 
+
+| The language in which the short description and image will be 
+
+**The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties on root level first.** 
+
+## Creating product properties 
+
+To create a custom product property, use [CreateProductPropertyType](/link): 
+
+```json { 
+
+"TypeID": "eu_ecolabel", "CategoryID": "default", "DataType": 3 
+
+} ``` 
+
+Except for `TypeID` and `CategoryID`, this service works the exact same as our [CustomField](/link) services. 
+
+### Display values for custom properties 
+
+In order to give your properties custom names to be displayed in front ends, use [EditProductPropertyType]( /link): 
+
+```json { 
+
+"ID": "eu_ecolabel", "Edits": [ 
+
+{\
+"LayerID": 1, 
+
+"Content": {\
+"display_name": "European economy label" 
+
+} } 
+
+] } 
+
+```\
+Here, `LayerID` represents your contentlayer ID.### Additional services 
+
+- [SearchProductPropertyTypes]( /link) - [DeleteProductPropertyType]( /link) - [ListProductPropertyType]( /link)\
+- [DeleteProductPropertyType]( /link) 
+
+### Product property categories 
+
+Product property categories can be managed using the following services: 
+
+- [CreateProductPropertyCategory]( /link) - [EditProductPropertyCategory]( /link) - [ListProductPropertyCategories]( /link) - [CreateProductPropertyCategory]( /link) 
+
+:::info Note\
+Product property categories can't be deleted. ::: 
+
+## Defining values in `ImportProducts`\
+To add values for the custom product property we've just created, we use the 
+
+`Content` object in `ImportProducts`: 
+
+```json { 
+
+"SystemID": "PimCore", "Products": [ 
+
+{\
+"ID": "121",\
+"Name": "NewBorn T-Shirt", "TaxCode": "High", "Content": [ 
+
+{\
+"CustomContent": { 
+
+"eu_ecolabel": true } 
+
+} ] 
+
+} ] 
+
+} ``` 
+
+Since 
+
+our custom product property was just a boolean, our case is pretty simple. 
+
+:::info Note\
+Since these product properties live in the content object, they can have different values for different languages.\
+::: 
+
+## Creating product properties in `ImportProducts`\
+If we didn't have our property preconfigured, we could also just provide it in the 
+
+`ImportProducts` message: 
+
+```json { 
+
+"SystemID": "PimCore", "CustomPropertyTypes": [ 
+
+{ 
+
+"ProductPropertyTypeID": "eu_ecolabel", "CategoryID": "default",\
+"DataType": 3 
+
+} ], 
+
+"Products": [ { 
+
+"ID": "121",\
+"Name": "NewBorn T-Shirt", "TaxCode": "High", "Content": [ 
+
+{\
+"CustomContent": { 
+
+"eu_ecolabel": true } 
+
+} ] 
+
+} ] 
+
+} ``` 
+
+After\
+will be set on the product. 
+
+this message, the product property will be known in EVA and the correct value 
+
+## Copying properties to parents 
+
+### Overview 
+
+On an e-commerce site overview page, you typically want to display color or style-level products instead of size-level products. However, you still want to provide filters on available colors and sizes. This data is often not present at the style or color level unless explicitly provided. 
+
+Using the `ProductPropertyType` called `CopyToParentProductPropertyTypeID`you can refer to the ID of another property whose value will be copied to its parent. 
+
+### Example Usage 
+
+For instance, if a size-level product is available in "S", "M", and "L", setting `CopyToParentProductPropertyTypeID` on the size property to `available_sizes` ensures that these values are copied to the parent (color-level) and grandparent (style-level) products under the `available_sizes` property. 
+
+```json 
+
+{ 
+
+  "CustomPropertyTypes": [ 
+
+    { 
+
+      "ProductPropertyTypeID": "size", 
+
+      "CopyToParentProductPropertyTypeID": "available_sizes", 
+
+      "DataType": 0, 
+
+      "IndexType": 0, 
+
+      "IsArray": false 
+
+    }, 
+
+    { 
+
+      "ProductPropertyTypeID": "color", 
+
+      "CopyToParentProductPropertyTypeID": "available_colors", 
+
+      "DataType": 0, 
+
+      "IndexType": 0, 
+
+      "IsArray": false 
+
+    } 
+
+  ] 
+
+} 
+
+``` 
+
+This configuration automatically copies all distinct size values to their respective parents under `available_sizes`, as well as color. 
+
+### Example Response 
+
+From `SearchProducts`: 
+
+```json 
+
+{ 
+
+  "product_id": 164, 
+
+  "available_colors": [ 
+
+    "blue", 
+
+    "red" 
+
+  ], 
+
+  "available_sizes": [ 
+
+    "S", 
+
+    "M", 
+
+    "XL", 
+
+    "XS" 
+
+  ] 
+
+} 
+
+``` 
+
+### Notes 
+
+- Changing the value of `CopyToParentProductPropertyTypeID` for an existing property type affects ONLY products provided in the same request. To apply changes to all products, use the `ComposeProducts` service for a full recompose. 
+
+- Properties created via `CopyToParentProductPropertyTypeID` are automatically indexed and set as array properties for filtering and aggregation. 
+
+## Including content of children to parents/siblings 
+
+### Overview 
+
+This feature enhances display capabilities by allowing child or sibling content to be included in the parent product. While the previous feature focuses on filtering and aggregation, this functionality is purely for display purposes. 
+
+### Configuration 
+
+Two settings are used to define this behavior: 
+
+- `PIM:Composition:VariationPropertiesToCopy:Children` 
+
+- `PIM:Composition:VariationPropertiesToCopy:Siblings` 
+
+Both accept a comma-separated list of `ProductPropertyTypes`, such as `color_name,color_hex_value`. 
+
+### Example Usage 
+
+When configured, the resulting product content includes a `variations` array: 
+
+```json 
+
+{ 
+
+  "product_id": 123, 
+
+  "variations": [ 
+
+    { 
+
+      "product_id": 456, 
+
+      "type": "child", 
+
+      "color_name": "Cyan", 
+
+      "color_hex_value": "0000FF" 
+
+    }, 
+
+    { 
+
+      "product_id": 789, 
+
+      "type": "child", 
+
+      "color_name": "Bright red", 
+
+      "color_hex_value": "FF0000" 
+
+    } 
+
+  ] 
+
+} 
+
+``` 
+
+### Differences from `CopyToParentProductPropertyTypeID` 
+
+1.  There is a direct reference to the ID of the child/sibling through a product_idproperty, and the values of the content. With the CopyToParentProductPropertyTypeID commit, you only have a distinct list of values, no relation to products. Having just the values is useful for filtering/aggregation, but not for display/linking. 
+
+1.  The contents of variation is entirely unindexed, it's not possible to filter on anything inside of it. It's purely meant as enrichment data, not for search/filtering. 
+
+### Notes 
+
+- By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property, you specifically have to select it by requesting the variations field. 
+
+- Changing the value of these two settings has no immediate effect, only when a product is composed is the value of this setting checked. So, after changing it you should do a ComposeProducts. We don't do this automatically as this is quite an expensive operation and you might want to test it by composing a few products first.
