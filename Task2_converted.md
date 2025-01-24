@@ -442,9 +442,7 @@ After this message, the product property will be known in EVA and the correct va
 
 ## Copying properties to parents 
 
-### Overview 
-
-On an e-commerce site overview page, you typically want to display color or style-level products instead of size-level products. However, you still want to provide filters on available colors and sizes. This data is often not present at the style or color level unless explicitly provided. 
+On an e-commerce site overview page, you typically want to display color or style-level products instead of size-level products. However, you might want to provide filters on available colors and sizes. This data is often not present at the style or color level unless explicitly provided. 
 
 Using the `ProductPropertyType` called `CopyToParentProductPropertyTypeID`you can refer to the ID of another property whose value will be copied to its parent. 
 
