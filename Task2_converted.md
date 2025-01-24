@@ -122,60 +122,60 @@ To add a barcode to a product, use the **Barcodes** element. You can also spec
 
 Product hierarchy is defined by the `Variations` property. This in turn contains a new `Products` property where every product should contain a value for the variation. The following request contains a product with four sizes: 
 
-```json { 
-
-"SystemID": "PimCore", "Products": [ 
-
-{\
-"ID": "121",\
-"Name": "NewBorn T-shirt", 
-
-"TaxCode": "High", "Variations": { 
-
-"Property": "size", "LogicalLevel": "size", "Products": [ 
-
-{\
-"ID": "121-978020137957", "Name": "NewBorn T-shirt", "VariationValues": [ 
-
-{\
-"Value": "3-6 months" 
-
-} ] 
-
-}, { 
-
-"ID": "121-978020137958", "Name": "NewBorn T-shirt", "VariationValues": [ 
-
-{\
-"Value": "6-12 months" 
-
-} ] 
-
-}, { 
-
-"ID": "121-978020137959", "Name": "NewBorn T-shirt", "VariationValues": [ 
-
-{\
-"Value": "12-18 months" 
-
-} ] 
-
-}, { 
-
-"ID": "121-978020137960", "Name": "NewBorn T-shirt", "VariationValues": [ 
-
-{\
-"Value": "18-24 months" 
-
-} ] 
-
-} ] 
-
-} } 
-
-] } 
-
-```\
+```json
+{
+  "SystemID": "PimCore",
+  "Products": [
+    {
+      "ID": "121",
+      "Name": "NewBorn T-shirt",
+      "TaxCode": "High",
+      "Variations": {
+        "Property": "size",
+        "LogicalLevel": "size",
+        "Products": [
+          {
+            "ID": "121-978020137957",
+            "Name": "NewBorn T-shirt",
+            "VariationValues": [
+              {
+                "Value": "3-6 months"
+              }
+            ]
+          },
+          {
+            "ID": "121-978020137958",
+            "Name": "NewBorn T-shirt",
+            "VariationValues": [
+              {
+                "Value": "6-12 months"
+              }
+            ]
+          },
+          {
+            "ID": "121-978020137959",
+            "Name": "NewBorn T-shirt",
+            "VariationValues": [
+              {
+                "Value": "12-18 months"
+              }
+            ]
+          },
+          {
+            "ID": "121-978020137960",
+            "Name": "NewBorn T-shirt",
+            "VariationValues": [
+              {
+                "Value": "18-24 months"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
 :::danger Note 
 
 Both `color` and `size` are NOT native EVA product properties. These have to be created before they can be used. See [Custom product properties](/link). 
