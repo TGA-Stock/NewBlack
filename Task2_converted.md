@@ -5,36 +5,36 @@ This document describes how you you can migrate your product information into EV
 
 **Covered in this document**
 
-1. Product setup
-- Single product upload
-- Product types
-- Product hierarchy
-- Editing products
-- Deleting products
-- Barcodes
+- Product setup
+  - Single product upload
+  - Product types
+  - Product hierarchy
+  - Editing products
+  - Deleting products
+  - Barcodes
 
-2. Product content
-- Images
-- Languages
-- Native content options
-- USP text and USP blobs
+- Product content
+  - Images
+  - Languages
+  - Native content options
+  - USP text and USP blobs
 
-3. Properties
-- Creating product properties
-- Display values for customer properties
-- Product property categories
-- Product property types
-- Defining values in ImportProducts
-- Creating product properties in ImportProducts
-- Copying properties to parents
-- Including content of children to parents/siblings
+- Properties
+  - Creating product properties
+  - Display values for customer properties
+  - Product property categories
+  - Product property types
+  - Defining values in ImportProducts
+  - Creating product properties in ImportProducts
+  - Copying properties to parents
+  - Including content of children to parents/siblings
 
-4. Error handling - Failure responses
+- Error handling - Failure responses
   - Partial failure
   - Unknown tax code
   - Validation failure
 
-## 1. Product setup
+## Product setup
 
 ### Single product upload
 
@@ -221,7 +221,7 @@ To add a barcode to a product, use the **Barcodes** element. You can also spec
 
 
 
-## 2. Product content
+## Product content
 Product Content can be included in the 'ImportProducts' service using the 'Content' array on product level.
 
 ### Images 
@@ -316,7 +316,7 @@ Here is what this would look like using our NewBorn T-Shirt example:
 
 >**Important Note:** The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth. For the BlobID you can refer to [Blob management](/link).
 
-## 3. Product properties 
+## Product properties 
 The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties on root level first.
 
 Here is a breakdown of each property: 
@@ -539,7 +539,7 @@ The contents of variation are entirely unindexed, meaning it's not possible to f
 >**Note:**
 By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You specifically have to request the variations field to include it. Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
 
-## 4. Error handling - Failure responses
+## Error handling - Failure responses
 
 ### Partial failure 
 
