@@ -1,7 +1,7 @@
 # Product setup and management
 EVA, short for Elastic Versatile Architecture, is an eCommerce system created by New Black to make shopping easier and more seamless for you, your business, and your customers. It helps you connect all your sales channels, ***such as online stores, physical shops, and mobile apps***, into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers.
 
-This document describes how you you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
+This document describes how you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
 
 **Covered in this document**
 
@@ -218,9 +218,6 @@ To add a barcode to a product, use the **Barcodes** element. You can also spec
 </Tabs>
 ```
 
-
-
-
 ## Product content
 Product Content can be included in the 'ImportProducts' service using the 'Content' array on product level.
 
@@ -398,7 +395,6 @@ To add values for the custom product property we've just created, we use the `C
   ]
 }
 ```
-
 Since our custom product property was just a boolean, our case is pretty simple. 
 
 >**Note:**Since these product properties live in the content object, they can have different values for different languages.
@@ -487,7 +483,6 @@ Example Response From `SearchProducts`: 
   ]
 }
 ```
-
 
 >**Note:** Changing the value of `CopyToParentProductPropertyTypeID` for an existing property type affects ONLY products provided in the same request. To apply changes to all products, use the `ComposeProducts` service for a full recompose.
 
