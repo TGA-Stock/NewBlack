@@ -1,34 +1,41 @@
-# Product migration
+# Product setup and management
 EVA, short for Elastic Versatile Architecture, is an ecommerce system created by New Black to make shopping easier and more seamless for you, your business and your customers. It helps you to connect all your sales channels—like online stores, physical shops, and mobile apps—into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers. 
 
 This document describes how you you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
 
-**Covered in the document**
-* Product migration
-  * Single product upload
-  * Product types
-  * Barcodes
-  * Product hierarchy
-  * Failure responses
-    * Partial failure
-    * Unknown tax code
-    * Validation failure
-  * Editing products
-  * Deleteing products
-* Product Content
-  * Images
-  * Languages
-  * Native content options
-  * USP text and USP blobs
-  * Properties
-  * Creating product properties
-   * Display values for customer properties
-   * Additional services
-   * Product property categories
-  * Defining values in ImportProducts
-  * Creating product properties in ImportProducts
-  * Copying properties to parents
-  * Including content of children to parents/siblings 
+**Covered in this document**
+1. Product Setup and Management
+- Product Migration
+- Single Product Upload
+- Product Types
+- Product Hierarchy
+- Editing Products
+- Deleting Products
+- Barcodes
+
+2. Product Content
+- Product Content
+  - Images
+  - Languages
+  - Native Content Options
+  - USP Text and USP Blobs
+- Properties
+  - Creating Product Properties
+  - Display Values for Customer Properties
+  - Product Property Categories
+  - Defining Values in ImportProducts
+  - Creating Product Properties in ImportProducts
+  - Copying Properties to Parents
+  - Including Content of Children to Parents/Siblings
+
+3. Error Handling
+- Failure Responses
+  - Partial Failure
+  - Unknown Tax Code
+  - Validation Failure
+
+4. Additional Services
+- Additional Services
 
 ## Single product upload
 
