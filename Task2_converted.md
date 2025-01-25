@@ -4,7 +4,7 @@ EVA, short for Elastic Versatile Architecture, is an ecommerce system created by
 This document describes how you you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
 
 **Covered in this document**
-1. Product setup
+Product setup
 - Single product upload
 - Product types
 - Product hierarchy
@@ -12,7 +12,7 @@ This document describes how you you can migrate your product information into EV
 - Deleting products
 - Barcodes
 
-2. Product content and properties
+Product content and properties
 - Content
   - Images
   - Languages
@@ -28,8 +28,7 @@ This document describes how you you can migrate your product information into EV
   - Copying properties to parents
   - Including content of children to parents/siblings
 
-3. Error Handling
-- Failure responses
+Error handling - Failure responses
   - Partial failure
   - Unknown tax code
   - Validation failure
@@ -221,11 +220,10 @@ To add a barcode to a product, use the **Barcodes** element. You can also spec
 
 
 
-## Product content and properties
-### Content
+## Product content
 Product Content can be included in the 'ImportProducts' service using the 'Content' array on product level.
 
-#### Images 
+### Images 
 
 We will illustrate how this works using a simple product with a simple image first: 
 
@@ -251,7 +249,7 @@ We will illustrate how this works using a simple product with a simple image fir
 }
 ```
 
-#### Languages 
+### Languages 
 
 Note how the `Content` property in our example request is an array, that's because you can add content for multiple languages: 
 
@@ -274,10 +272,10 @@ Note how the `Content` property in our example request is an array, that's bec
 }
 ```
 
-#### Native content options 
+### Native content options 
 EVA ships some native product properties which have some functionalities in our front-ends. If yuo are looking for possibilities beyond our native options though, see[Custome product properties] (/link).
 
-#### USP text and USP blobs 
+### USP text and USP blobs 
 
 Using the `UniqueSellingPointTexts` and `UniqueSellingPointBlobIDs` you can display product information on **POS** and **Companion App** directly in the search result by providing the respective input to the referred to properties. 
 
@@ -317,7 +315,7 @@ Here is what this would look like using our NewBorn T-Shirt example:
 
 >**Important Note:** The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth. For the BlobID you can refer to [Blob management](/link).
 
-### Properties 
+## Product properties 
 The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties on root level first.
 
 Here is a breakdown of each property: 
@@ -330,7 +328,7 @@ Here is a breakdown of each property: 
 | **ShortDescription** | A brief description of your product.                             |
 | **ImageURL**      | The URL to your product image. 
 
-#### Creating product properties 
+### Creating product properties 
 
 To create a custom product property, use [CreateProductPropertyType](/link): 
 
@@ -344,7 +342,7 @@ To create a custom product property, use [CreateProductPropertyType](/link): 
 
 Except for `TypeID` and `CategoryID`, this service works the exact same as our [CustomField](/link) services. 
 
-#### Display values for custom properties 
+### Display values for custom properties 
 
 In order to give your properties custom names to be displayed in front ends, use [EditProductPropertyType]( /link): 
 
@@ -363,19 +361,19 @@ In order to give your properties custom names to be displayed in front ends, use
 ```
 Here, `LayerID` represents your contentlayer ID.
 
-#### Product property categories 
+### Product property categories 
 - [CreateProductPropertyCategory]
 - [EditProductPropertyCategory]
 - [ListProductPropertyCategory]
 
 >**Note:** Product property categories can't be deleted.
 
-#### Product property types
+### Product property types
 - [SearchProductPropertyType]
 - [DeleteProductPropertyType]
 - [ListProductPropertyType]
 
-#### Defining values in ImportProducts
+### Defining values in ImportProducts
 To add values for the custom product property we've just created, we use the `Content` object in `ImportProducts`: 
 
 ```json
@@ -402,7 +400,7 @@ Since our custom product property was just a boolean, our case is pretty simple.
 
 >**Note:**Since these product properties live in the content object, they can have different values for different languages.
 
-#### Creating product properties in ImportProducts
+### Creating product properties in ImportProducts
 If we didn't have our property preconfigured, we could also just provide it in the `ImportProducts` message: 
 
 ```json 
@@ -434,13 +432,13 @@ If we didn't have our property preconfigured, we could also just provide it in t
 
 After this message, the product property will be known in EVA and the correct value will be set on the product.
 
-#### Copying properties to parents 
+### Copying properties to parents 
 
 On an e-commerce site overview page, you typically want to display color or style-level products instead of size-level products. However, you might want to provide filters on available colors and sizes. This data is often not present at the style or color level unless explicitly provided. 
 
 Using the `ProductPropertyType` called `CopyToParentProductPropertyTypeID`you can refer to the ID of another property whose value will be copied to its parent. 
 
-**Example Usage**
+#### Example Usage
 
 For instance, if a size-level product is available in "S", "M", and "L", setting `CopyToParentProductPropertyTypeID` on the size property to `available_sizes` ensures that these values are copied to the parent (color-level) and grandparent (style-level) products under the `available_sizes` property.
 
@@ -490,13 +488,13 @@ Example Response From `SearchProducts`: 
 
 >**Note:** Changing the value of `CopyToParentProductPropertyTypeID` for an existing property type affects ONLY products provided in the same request. To apply changes to all products, use the `ComposeProducts` service for a full recompose.
 
-#### Including content of children to parents/siblings 
+### Including content of children to parents/siblings 
 
-**Overview** 
+#### Overview
 
 This feature enhances display capabilities by allowing child or sibling content to be included in the parent product. While the previous feature focuses on filtering and aggregation, this functionality is purely for display purposes. 
 
-**Configuration** 
+#### Configuration
 
 Two settings are used to define this behavior: 
 
@@ -506,7 +504,7 @@ Two settings are used to define this behavior: 
 
 Both accept a comma-separated list of `ProductPropertyTypes`, such as `color_name,color_hex_value`. 
 
-**Example Usage**
+#### Example Usage
 
 When configured, the resulting product content includes a `variations` array: 
 
@@ -531,7 +529,7 @@ When configured, the resulting product content includes a `variations` array: 
 ```
 Product 123 has two variations available in blue and red, with the type property indicating if they are children or siblings. If the type is "child," the variation is one level below product 123, while if it's "sibling," the variations are on the same level, sharing the same parent.
 
-**Differences from CopyToParentProductPropertyTypeID**
+#### Differences from CopyToParentProductPropertyTypeID
 
 There is a direct reference to the ID of the child/sibling through a product_id property, along with the values of the content. With the CopyToParentProductPropertyTypeID commit, you only get a distinct list of values, with no relation to products. While having just the values is useful for filtering and aggregation, it doesn't work for display or linking.
 
@@ -540,13 +538,13 @@ The contents of variation are entirely unindexed, meaning it's not possible to f
 >**Note:**
 By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You specifically have to request the variations field to include it. Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
 
-### Failure responses 
+## Error handling - Failure responses
 
-#### Partial failure 
+### Partial failure 
 
 Let's assume you made an API call to update 100 products but out of this only 90 products were updated. The remaining 10 failed to update in EVA. The response would then contain the parts of the call that failed, and the reason why they failed. 
 
-#### Unknown tax code 
+### Unknown tax code 
 
 ```json
 {
@@ -559,7 +557,7 @@ Let's assume you made an API call to update 100 products but out of this only 90
 }
 ```
 
-#### Validation failure 
+### Validation failure 
 
 ```json
 {
