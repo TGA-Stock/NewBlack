@@ -1,7 +1,11 @@
 # EVA - Product setup and management
 EVA, short for Elastic Versatile Architecture, is an eCommerce system created by New Black to make shopping easier and more seamless for you, your business, and your customers. It helps you connect all your sales channels, ***such as online stores, physical shops, and mobile apps***, into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers.
 
-This document describes how you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
+This document describes how you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual. 
+
+**Level of EVA expertise needed to use this document** - A basic understanding 2/5
+
+It is necessary to have a basic understanding of EVA features and elements to use this document effectively.
 
 **Covered in this document**
 
@@ -53,13 +57,13 @@ A simple, single product upload through `ImportProducts`can be managed using the
 }
 ```
 
-In the above example, we create a product called 'Unisex T-shirt' with a `SystemID`/`BackendID` (ID) and a `TaxCode`. We use `SystemID` to identify the system from which we are importing our products. 
+In the example above, we create a product called "Unisex T-shirt" with a SystemID/BackendID (ID) and a TaxCode. The SystemID is used to identify the system from which the product is being imported.
 
-In addition to the SystemID we provide a unique identifier `ID` field, all products can have this `CustomID`. If you don't specify a `CustomID`, the `BackendID` will be used as default. 
+In addition to the SystemID, we provide a unique identifier in the ID field, which can be customized for each product. If you don't specify a CustomID, the BackendID will be used as the default identifier.
 
 #### Response 
 
-Your products will always have an `EvaID` assigned upon creation. Your response will include these EVA IDs, grouped by which products were updated or created. When products are created, they are also updated. Additionally, we return a `BackendID`/`EvaID` mapping. 
+Every product will be assigned an EvaID upon creation. The response will include the EVA IDs, grouped by whether the products were updated or created. When products are created, they are also considered updated. Additionally, we will return a mapping of BackendID to EvaID.
 
 ```json 
 { 
@@ -162,7 +166,7 @@ To edit products, just use the same request and alter the information. EVA will 
 
 ### Deleting products 
 
-To delete products, use the same request, but add the `"IsDeleted": true` property on the products and set it to true. The products will then be deleted. It's good to know that the products actually remain in EVA, their status will just be: *Deleted* and they won't be visible on the front ends anymore.
+To delete products, use the same request but include the "IsDeleted": true property for each product. Once set to true, the products will be marked as deleted. It's important to note that while the products are deleted, they remain in EVA with a status of Deleted, and will no longer be visible on the front end.
 
 ### Barcodes 
 
@@ -219,11 +223,11 @@ To add a barcode to a product, use the **Barcodes** element. You can also spec
 ```
 
 ## Product content
-Product Content can be included in the 'ImportProducts' service using the 'Content' array on product level.
+Product content can be included in the 'ImportProducts' service using the 'Content' array at the product level.
 
 ### Images 
 
-We will illustrate how this works using a simple product with a simple image first: 
+In the example below, we associate an image with a product. This is illustrated using a simple product, the "Unisex T-shirt," with a basic image URL provided:
 
 ```json
 {
@@ -249,7 +253,11 @@ We will illustrate how this works using a simple product with a simple image fir
 
 ### Languages 
 
-Note how the `Content` property in our example request is an array, that's because you can add content for multiple languages: 
+Note that the Content property in the example request below is an array. This allows you to add content for multiple languages.
+
+The Content array enables you to define content for different languages by specifying a LanguageID.
+
+In the example below, the product has a short description in Dutch ("nl").
 
 ```json  
 {
@@ -271,13 +279,13 @@ Note how the `Content` property in our example request is an array, that's bec
 ```
 
 ### Native content options 
-EVA ships some native product properties which have some functionalities in our front-ends. If yuo are looking for possibilities beyond our native options though, see[Custome product properties] (/link).
+EVA can ship native product properties which have functionalities at the front-end. If you are looking for possibilities beyond our native options though, see[Custome product properties] (/link).
 
 ### USP text and USP blobs 
 
-Using the `UniqueSellingPointTexts` and `UniqueSellingPointBlobIDs` you can display product information on **POS** and **Companion App** directly in the search result by providing the respective input to the referred to properties. 
+By using the UniqueSellingPointTexts and UniqueSellingPointBlobIDs, you can display product information directly in the **POS** and **Companion App** search results by providing the corresponding values to these properties.
 
-Here is what this would look like using our NewBorn T-Shirt example: 
+Here’s an example using the NewBorn T-Shirt:
 
 ```json
 {
@@ -311,10 +319,10 @@ Here is what this would look like using our NewBorn T-Shirt example:
 }
 ```
 
->**Important Note:** The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth. For the BlobID you can refer to [Blob management](/link).
+>**Important Note**: The order of the text and blob IDs is significant. In this example, "Green choice" will link to the first BlobID, and "Vegan" will link to the second. For managing BlobIDs, refer to the Blob Management.
 
 ## Product properties 
-The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties on root level first.
+The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties at root level first.
 
 Here is a breakdown of each property: 
 
@@ -338,7 +346,7 @@ To create a custom product property, use [CreateProductPropertyType](/link): 
 }
 ```
 
-Except for `TypeID` and `CategoryID`, this service works the exact same as our [CustomField](/link) services. 
+This service works similarly to our CustomField services, with the exception of the TypeID and CategoryID fields.
 
 ### Display values for custom properties 
 
@@ -374,7 +382,7 @@ The following services are available for managing product property types:
 - [ListProductPropertyType]
 
 ### Defining values in ImportProducts
-To add values for the custom product property we've just created, we use the `Content` object in `ImportProducts`: 
+To add values to the custom product property, we use the `Content` object in `ImportProducts`: 
 
 ```json
 {
@@ -395,12 +403,12 @@ To add values for the custom product property we've just created, we use the `C
   ]
 }
 ```
-Since our custom product property was just a boolean, our case is pretty simple. 
+Since our custom product property is a simple boolean, this case is straightforward.
 
->**Note:**Since these product properties live in the content object, they can have different values for different languages.
+>**Note**: As these product properties are part of the content object, they can have different values for each language.
 
 ### Creating product properties in ImportProducts
-If we didn't have our property preconfigured, we could also just provide it in the `ImportProducts` message: 
+If you don't have your property preconfigured, you can provide it in the `ImportProducts` message: 
 
 ```json 
 {
@@ -429,7 +437,7 @@ If we didn't have our property preconfigured, we could also just provide it in t
 }
 ```
 
-After this message, the product property will be known in EVA and the correct value will be set on the product.
+On receipt of this message, the product property will be known in EVA and the correct value will be set on the product.
 
 ### Copying properties to parents 
 
@@ -441,7 +449,7 @@ Using the `ProductPropertyType` called `CopyToParentProductPropertyTypeID`you ca
 
 For instance, if a size-level product is available in "S", "M", and "L", setting `CopyToParentProductPropertyTypeID` on the size property to `available_sizes` ensures that these values are copied to the parent (color-level) and grandparent (style-level) products under the `available_sizes` property.
 
-Example of using this feature through ImportProducts:
+You can doe this through ImportProducts:
 
 ```json
 {
@@ -488,8 +496,6 @@ Example Response From `SearchProducts`: 
 
 ### Including content of children to parents/siblings 
 
-#### Overview
-
 This feature enhances display capabilities by allowing child or sibling content to be included in the parent product. While the previous feature focuses on filtering and aggregation, this functionality is purely for display purposes. 
 
 #### Configuration
@@ -534,13 +540,13 @@ There is a direct reference to the ID of the child/sibling through a product_id 
 The contents of variation are entirely unindexed, meaning it's not possible to filter anything inside of it. It's purely intended as enrichment data, not for search or filtering.
 
 >**Note:**
-By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You specifically have to request the variations field to include it. Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
+By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You have to request the variations field to include it. Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
 
 ## Error handling - Failure responses
 
 ### Partial failure 
 
-Let's assume you made an API call to update 100 products but out of this only 90 products were updated. The remaining 10 failed to update in EVA. The response would then contain the parts of the call that failed, and the reason why they failed. 
+**Example**: You made an API call to update 100 products, but only 90 were successfully updated. The remaining 10 failed to update in EVA. The response will include details about the failed items and the reasons for the failure.
 
 ### Unknown tax code 
 
@@ -554,6 +560,7 @@ Let's assume you made an API call to update 100 products but out of this only 90
   }
 }
 ```
+This message represents an error response indicating that a product (Product 123) uses a tax code that is not recognized or is unknown.
 
 ### Validation failure 
 
