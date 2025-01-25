@@ -4,7 +4,8 @@ EVA, short for Elastic Versatile Architecture, is an ecommerce system created by
 This document describes how you you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
 
 **Covered in this document**
-Product setup
+
+1. Product setup
 - Single product upload
 - Product types
 - Product hierarchy
@@ -12,28 +13,28 @@ Product setup
 - Deleting products
 - Barcodes
 
-Product content and properties
-- Content
-  - Images
-  - Languages
-  - Native content options
-  - USP text and USP blobs
-- Properties
-  - Creating product properties
-  - Display values for customer properties
-  - Product property categories
-  - Product property types
-  - Defining values in ImportProducts
-  - Creating product properties in ImportProducts
-  - Copying properties to parents
-  - Including content of children to parents/siblings
+2. Product content
+- Images
+- Languages
+- Native content options
+- USP text and USP blobs
 
-Error handling - Failure responses
+3. Properties
+- Creating product properties
+- Display values for customer properties
+- Product property categories
+- Product property types
+- Defining values in ImportProducts
+- Creating product properties in ImportProducts
+- Copying properties to parents
+- Including content of children to parents/siblings
+
+4. Error handling - Failure responses
   - Partial failure
   - Unknown tax code
   - Validation failure
 
-## Product setup
+## 1. Product setup
 
 ### Single product upload
 
@@ -220,7 +221,7 @@ To add a barcode to a product, use the **Barcodes** element. You can also spec
 
 
 
-## Product content
+## 2. Product content
 Product Content can be included in the 'ImportProducts' service using the 'Content' array on product level.
 
 ### Images 
@@ -315,7 +316,7 @@ Here is what this would look like using our NewBorn T-Shirt example:
 
 >**Important Note:** The text and blobs are order sensitive. So in our example, "Green choice" will link to the first BlobID, "Vegan" to the second, and so forth. For the BlobID you can refer to [Blob management](/link).
 
-## Product properties 
+## 3. Product properties 
 The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties on root level first.
 
 Here is a breakdown of each property: 
@@ -504,7 +505,7 @@ Two settings are used to define this behavior: 
 
 Both accept a comma-separated list of `ProductPropertyTypes`, such as `color_name,color_hex_value`. 
 
-#### Example Usage
+#### Example usage
 
 When configured, the resulting product content includes a `variations` array: 
 
@@ -538,7 +539,7 @@ The contents of variation are entirely unindexed, meaning it's not possible to f
 >**Note:**
 By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You specifically have to request the variations field to include it. Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
 
-## Error handling - Failure responses
+## 4. Error handling - Failure responses
 
 ### Partial failure 
 
