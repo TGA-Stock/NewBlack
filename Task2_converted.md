@@ -23,7 +23,7 @@ This document describes how you you can migrate your product information into EV
   - Creating product properties
   - Display values for customer properties
   - Product property categories
-  - Product property types
+  - Additional services
   - Defining values in ImportProducts
   - Creating product properties in ImportProducts
   - Copying properties to parents
@@ -362,14 +362,16 @@ In order to give your properties custom names to be displayed in front ends, use
 ```
 Here, `LayerID` represents your contentlayer ID.
 
-### Product property categories 
+### Product property categories
+You can manage product property categories with the following services:
 - [CreateProductPropertyCategory]
 - [EditProductPropertyCategory]
 - [ListProductPropertyCategory]
 
 >**Note:** Product property categories can't be deleted.
 
-### Product property types
+### Additional services
+The following services are available for managing product property types:
 - [SearchProductPropertyType]
 - [DeleteProductPropertyType]
 - [ListProductPropertyType]
