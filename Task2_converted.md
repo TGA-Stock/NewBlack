@@ -1,10 +1,11 @@
-# Pushing products 
+# Product migration
+EVA, short for Elastic Versatile Architecture, is an ecommerce system created by New Black to make shopping easier and more seamless for you, your business and your customers. It helps you to connect all your sales channels—like online stores, physical shops, and mobile apps—into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers. 
 
-EVA is not a product information management system. We tried, we weren't particularly good at it, and customers were using other systems as their golden record anyways. So, we stopped trying to be something we're not. Nowadays, we EXPECT our customers to use some other PIM system, and we just provide a neat little service to push all of your product information into EVA.
+This document describes how you you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA please refer to our User Manual.
 
-## Single product 
+## Single product upload
 
-A simple, single product upload through `ImportProducts` would look something like this: 
+A simple, single product upload through `ImportProducts`can be managed using the following configuration script: 
 
 ```json 
 { 
@@ -19,13 +20,13 @@ A simple, single product upload through `ImportProducts` would look something li
 }
 ```
 
-In the above example, we create a product called 'Unisex T-shirt' with a `BackendID` (ID) and a `TaxCode`. We use `SystemID` to identify the system from which we are importing our products. 
+In the above example, we create a product called 'Unisex T-shirt' with a `SystemID`/`BackendID` (ID) and a `TaxCode`. We use `SystemID` to identify the system from which we are importing our products. 
 
-In addition to the BackendID we provide in the `ID` field, a product can have a `CustomID`. If you don't explicitly specify a `CustomID`, it will be the same as your `BackendID`. 
+In addition to the SystemID we provide a unique identifier `ID` field, all products can have this `CustomID`. If you don't specify a `CustomID`, the `BackendID` will be used as default. 
 
 #### Response 
 
-Your products will always have an `EvaID` assigned upon creation. Your response will include these EVA IDs, grouped by which products were updated or created. When products are created, they are also always updated. Additionally, we return a `BackendID`/`EvaID` mapping. 
+Your products will always have an `EvaID` assigned upon creation. Your response will include these EVA IDs, grouped by which products were updated or created. When products are created, they are also updated. Additionally, we return a `BackendID`/`EvaID` mapping. 
 
 ```json 
 { 
