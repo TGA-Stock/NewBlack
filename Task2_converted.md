@@ -223,7 +223,7 @@ To add a barcode to a product, use the **Barcodes** element. You can also spec
 
 ## Product content and properties
 ### Content
-**Product Content can be included in the 'ImportProducts' service using the 'Content' array on product level.**
+Product Content can be included in the 'ImportProducts' service using the 'Content' array on product level.
 
 #### Images 
 
