@@ -1,7 +1,34 @@
 # Product migration
 EVA, short for Elastic Versatile Architecture, is an ecommerce system created by New Black to make shopping easier and more seamless for you, your business and your customers. It helps you to connect all your sales channels—like online stores, physical shops, and mobile apps—into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers. 
 
-This document describes how you you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA please refer to our User Manual.
+This document describes how you you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
+
+**Covered in the document**
+* Product migration
+  * Single product upload
+  * Product types
+  * Barcodes
+  * Product hierarchy
+  * Failure responses
+    * Partial failure
+    * Unknown tax code
+    * Validation failure
+  * Editing products
+  * Deleteing products
+* Product Content
+  * Images
+  * Languages
+  * Native content options
+  * USP text and USP blobs
+  * Properties
+  * Creating product properties
+   * Display values for customer properties
+   * Additional services
+   * Product property categories
+  * Defining values in ImportProducts
+  * Creating product properties in ImportProducts
+  * Copying properties to parents
+  * Including content of children to parents/siblings 
 
 ## Single product upload
 
