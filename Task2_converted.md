@@ -4,38 +4,36 @@ EVA, short for Elastic Versatile Architecture, is an ecommerce system created by
 This document describes how you you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
 
 **Covered in this document**
-1. Product Setup and Management
-- Product Migration
-- Single Product Upload
-- Product Types
-- Product Hierarchy
-- Editing Products
-- Deleting Products
+1. Product setup
+- Product migration
+- Single product upload
+- Product types
+- Product hierarchy
+- Editing products
+- Deleting products
 - Barcodes
 
-2. Product Content
-- Product Content
+2. Product content and properties
+- Content
   - Images
   - Languages
-  - Native Content Options
-  - USP Text and USP Blobs
+  - Native content options
+  - USP text and USP blobs
 - Properties
-  - Creating Product Properties
-  - Display Values for Customer Properties
-  - Product Property Categories
-  - Defining Values in ImportProducts
-  - Creating Product Properties in ImportProducts
-  - Copying Properties to Parents
-  - Including Content of Children to Parents/Siblings
+  - Creating product properties
+  - Display values for customer properties
+  - Product property categories
+  - Product property types
+  - Defining values in ImportProducts
+  - Creating product properties in ImportProducts
+  - Copying properties to parents
+  - Including content of children to parents/siblings
 
 3. Error Handling
-- Failure Responses
-  - Partial Failure
-  - Unknown Tax Code
-  - Validation Failure
-
-4. Additional Services
-- Additional Services
+- Failure responses
+  - Partial failure
+  - Unknown tax code
+  - Validation failure
 
 ## Single product upload
 
