@@ -1,4 +1,4 @@
-# Product setup and management
+# EVA - Product setup and management
 EVA, short for Elastic Versatile Architecture, is an eCommerce system created by New Black to make shopping easier and more seamless for you, your business, and your customers. It helps you connect all your sales channels, ***such as online stores, physical shops, and mobile apps***, into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers.
 
 This document describes how you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual.
