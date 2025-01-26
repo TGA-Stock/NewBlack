@@ -28,7 +28,7 @@ Example retail departments that benefit from a Unified commercial experience thr
 * Support
 * New Business
 
-To ensure customer trust, retailers need to unify commerce to provide a truly consistent omnichannel experience.
+To ensure customer trust, retailers need to unify commerce to provide a truly consistent omnichannel experience. This will help maintain reputation of retailers commercial brand or brands.
 
 ## Challenges of Unified Commerce 
 
