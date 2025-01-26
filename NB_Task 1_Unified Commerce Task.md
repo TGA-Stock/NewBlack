@@ -1,7 +1,7 @@
 # Unified Commerce
 ## What is Unified Commerce? 
 
-Unified Commerce, ***the integration of a retailer's backend systems and sales channels for a truly consistent and friction free customer experience***, is top end approach to fully enabling retailer and customer success. 
+Unified Commerce, ***the integration of a retailer's backend systems and sales channels for a truly consistent and friction free customer experience***, is a top end approach to fully enabling retailer and customer success. 
 
 A trusting customer is a repeat customer.
 
