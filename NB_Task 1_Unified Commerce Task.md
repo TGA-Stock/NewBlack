@@ -1,24 +1,34 @@
 # Unified Commerce
 ## What is Unified Commerce? 
 
-Unified Commerce, ***the integration of a retailer's backend systems and sales channels for a truly consistent and friction free customer experience***, is the ultimate in enabling retail and customer success. 
+Unified Commerce, ***the integration of a retailer's backend systems and sales channels for a truly consistent and friction free customer experience***, is top end approach to fully enabling retailer and customer success. 
 
 A trusting customer is a repeat customer.
 
 Employing an advanced Unified Commerce platform future proofs retailers and so maximizes the potential for returning customers as it taps into the long-term human need to trust and stay on brand. 
 
-The natural world is filled with brands that send messages across our suite of senses, which we instinctively understand and connect to. This is what people are used to and have come to expect, through the mechanisms of evolution. Ultimately, staying on brand is an inherent survival mechanism, as a break from brand in the natural world disrupts experience and sends a message of danger. People fear an off-brand experience in nature and consequently move away to find a more consistent and safer location. 
+> The natural world is filled with brands that send messages across our suite of senses, which we instinctively understand and connect to. This is what we are used to and have come to expect, through the mechanisms of evolution. Ultimately, staying on brand is an inherent survival mechanism, as a break from brand in the natural world disrupts experience and sends a message of danger. We fear an off-brand experience in nature and consequently move away to find a more consistent and safer location. 
 
-The commercial experience is no different from peoples' inherent need to survive. 
+> The commercial experience is no different from our inherent need to survive. 
 
-Whenever we approach a retailer, everything our senses inform us about their brand should be in place as expected, regardless of the location or platform used to engaged with. A company's break from brand, which includes quality of service, means the commercial signals sent by the company disrupts the customer experience and hints at danger, consequently, people move away. 
+> Whenever we approach a retailer, everything our senses inform us about their brand should be in place as expected, regardless of the location or platform used to engaged with. A company's break from brand, which includes a break in quality of service, means the commercial signals sent by the company disrupts the customer experience and hints at danger, consequently, people move away. 
 
-The need of a retailer or brand to use as many commercial channels as possible, whilst maintaining control of backend operations and business unit systems, has
-become essential for survival in today's commercial landscape. Ecommerce and business management systems are constantly evolving, and the customer expectation matches that evolution, making it increasingly difficult to stay on brand. 
+The need of a retailer or brand to use as many commercial channels as possible (omichanneling), whilst maintaining control of backend operations and business unit systems, has
+become essential for survival in today's commercial landscape. E-commerce and business management systems are constantly evolving, and the customer expectation matches that evolution, making it increasingly difficult to stay on brand. 
 
 Unified Commerce allows retailers to provide a customer experience that is consistent across all channels at every location a customer engages with a retailer. The in-store experience matches an online experience. Perhaps most importantly the experience is fault free and frictionless, from the point of entry through to the point of sale. To ensure this, all retail channels and systems are integrated into one platform so that the backend operations of a retailer through to the point of sale can be managed at one unified location. 
 
-To ensure customer trust, retailers need to unify commerce to provide a truly consistent omnichannel experience, whilst providing employees with better working experience.
+Example retail departments that benefit from a Unified commercial experience through Unified Commerce supported integrated platforms:
+* Marketing
+* Sales
+* Customer success
+* Finance
+* Product
+* Communications and digital media
+* Support
+* New Business
+
+To ensure customer trust, retailers need to unify commerce to provide a truly consistent omnichannel experience.
 
 ## Challenges of Unified Commerce 
 
