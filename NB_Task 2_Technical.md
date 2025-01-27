@@ -368,17 +368,17 @@ In the above eaxample, `LayerID` represents your contentlayer ID.
 
 ### Product property categories
 You can manage product property categories with the following services:
-- [CreateProductPropertyCategory]
-- [EditProductPropertyCategory]
-- [ListProductPropertyCategory]
+- [CreateProductPropertyCategory](Link)
+- [EditProductPropertyCategory](Link)
+- [ListProductPropertyCategory](Link)
 
 >**Note:** Product property categories cannot be deleted.
 
 ### Additional services
 The following services are available for managing product property types:
-- [SearchProductPropertyType]
-- [DeleteProductPropertyType]
-- [ListProductPropertyType]
+- [SearchProductPropertyType](Link)
+- [DeleteProductPropertyType](Link)
+- [ListProductPropertyType](Link)
 
 ### Defining values in ImportProducts
 To add values to the custom product property, use the `Content` object in `ImportProducts`: 
