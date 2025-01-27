@@ -1,7 +1,7 @@
 # Unified Commerce
 ## What is Unified Commerce? 
 
-Unified Commerce, ***the integration of a retailer's backend systems and sales channels for a truly consistent and friction free customer experience***, is a top end approach to fully enabling retailer and customer success. 
+Unified Commerce, ***the integration of a retailer's backend systems and sales channels for a truly consistent and friction free customer experience***, is a top end approach to fully enable retail and customer success. 
 
 A trusting customer is a repeat customer.
 
@@ -11,9 +11,9 @@ Employing an advanced Unified Commerce platform future proofs retailers and so m
 
 > The commercial experience is no different from our inherent need to survive. 
 
-> Whenever we approach a retailer, everything our senses inform us about their brand should be in place as expected, regardless of the location or platform used to engaged with. A company's break from brand, which includes a break in quality of service, means the commercial signals sent by the company disrupts the customer experience and hints at danger, consequently, people move away. 
+> Whenever we approach a retailer, everything our senses inform us about their brand should be in place as expected, regardless of the location or platform used to engage with. A company's break from brand, which includes a break in quality of service, means the commercial signals sent by the company disrupts the customer experience and hints at danger, consequently, people move away. 
 
-The need of a retailer or brand to use as many commercial channels as possible (omichanneling), whilst maintaining control of backend operations and business unit systems, has
+The need of a retailer or brand to use as many commercial channels as possible (omnichanneling), whilst aligning and maintaining control of backend operations and business unit systems, has
 become essential for survival in today's commercial landscape. E-commerce and business management systems are constantly evolving, and the customer expectation matches that evolution, making it increasingly difficult to stay on brand. 
 
 Unified Commerce allows retailers to provide a customer experience that is consistent across all channels at every location a customer engages with a retailer. The in-store experience matches an online experience. Perhaps most importantly the experience is fault free and frictionless, from the point of entry through to the point of sale. To ensure this, all retail channels and systems are integrated into one platform so that the backend operations of a retailer through to the point of sale can be managed at one unified location. 
@@ -32,7 +32,7 @@ To ensure customer trust, retailers need to unify commerce to provide a truly co
 
 ## Challenges of Unified Commerce 
 
-* **Change management**: Upgrading to a unified modularized structure can be a deeply disruptive process for any company. This process often sees the integration of many systems, some of which may be difficult to fully integrate, and the training of employees that can be resistant. Mature companies with complex structures and processes that host many operational and commercial platforms can be challenging to integrate, especially when there is a need to maintain good customer relationships during the change. Employing good change management practices, for example; keeping employees informed, providing good training and re-iterating the ultimate benefits of Unified Commerce, are a good way to mitigate stress and complexity.
+* **Change management**: Upgrading to a unified modularized structure can be a deeply disruptive process for any company. This process often sees the integration of many systems, some of which may be difficult to fully integrate, and the training of employees that can be resistant. Mature companies with complex structures and processes that host many operational and commercial platforms can be challenging to integrate, especially when there is a need to maintain good customer relationships during the change. Employing good change management practices, for example, keeping employees informed, providing good training and re-iterating the ultimate benefits of Unified Commerce, are a good way to mitigate stress and complexity.
 
 * **Data Management**: Despite better universal data standardization and curation techniques as well as cheaper and adaptable analytics and management suites, there are still massive amounts of legacy data that have yet to be placed into modern environments and used in advanced applications. It takes time, patience and courage for any company to take the leap and modernize their data practices. No two companies are the same, and so the nuances of a given company will pose unique technical challenges for any IT manager, data engineer or data scientist working through the data. There is also the need to make sure practices are compliant with regulation, which is an aspect of data management increasing in complexity. Companies have policies and countries as well as continents have regulations, making it increasingly difficult to ensure compliance in a landscape that sees data move all around the world. Ensuring data privacy and security in an ever changing political and commercial environment is a major task, requiring expertise and decent technology.
 
