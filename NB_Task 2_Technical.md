@@ -1,7 +1,7 @@
 # EVA - Product setup and management
-EVA, short for Elastic Versatile Architecture, is an eCommerce system created by New Black to make shopping easier and more seamless for you, your business, and your customers. It helps you connect all your sales channels, ***such as online stores, physical shops, and mobile apps***, into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers.
+EVA is an eCommerce system created by New Black to make shopping easier and more seamless for you, your business, and your customers. It helps you connect all your sales channels, ***such as online stores, physical shops, and mobile apps***, into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers.
 
-This document describes how you can migrate your product information into EVA. All product migration can be done using JSON format. For further context and information concerning the use of EVA, please refer to our User Manual. 
+This document describes how you can migrate to and manage your product information in EVA. For further context and information concerning the use of EVA, please refer to our User Manual. 
 
 **Level of EVA expertise needed to use this document** - A basic understanding 2/5
 
@@ -158,7 +158,7 @@ Product hierarchy is defined by the `Variations` property. This in turn contai
   ]
 }
 ```
->**Note:** Both `color` and `size` are NOT native EVA product properties. These have to be created before they can be used. See [Custom product properties](/link). 
+>**Note:** Both `color` and `size` are NOT native EVA product properties. These have to be created before they can be used. Please refer to the [Custom product properties](/link) document. 
 
 ### Editing products 
 
@@ -166,7 +166,7 @@ To edit products, just use the same request and alter the information. EVA will 
 
 ### Deleting products 
 
-To delete products, use the same request but include the "IsDeleted": true property for each product. Once set to true, the products will be marked as deleted. It's important to note that while the products are deleted, they remain in EVA with a status of Deleted, and will no longer be visible on the front end.
+To delete products, use the same request but include the "IsDeleted": true property for each product. Once set to true, the products will be marked as deleted. It is important to note that while the products are deleted, they remain in EVA with a status of Deleted, and will no longer be visible on the front end.
 
 ### Barcodes 
 
@@ -279,13 +279,13 @@ In the example below, the product has a short description in Dutch ("nl").
 ```
 
 ### Native content options 
-EVA can ship native product properties which have functionalities at the front-end. If you are looking for possibilities beyond our native options though, see[Custome product properties] (/link).
+EVA can ship native product properties which provide functionalities at the front-end. If you are looking for possibilities beyond our native options, please refer to the [Custom product properties](/link) document.
 
 ### USP text and USP blobs 
 
-By using the UniqueSellingPointTexts and UniqueSellingPointBlobIDs, you can display product information directly in the **POS** and **Companion App** search results by providing the corresponding values to these properties.
+By using the `UniqueSellingPointTexts` and `UniqueSellingPointBlobIDs`, you can display product information directly in the **POS** and **Companion App**. You can also search results by providing the corresponding values to these properties.
 
-Here’s an example using the NewBorn T-Shirt:
+See the following example:
 
 ```json
 {
@@ -319,7 +319,7 @@ Here’s an example using the NewBorn T-Shirt:
 }
 ```
 
->**Important Note**: The order of the text and blob IDs is significant. In this example, "Green choice" will link to the first BlobID, and "Vegan" will link to the second. For managing BlobIDs, refer to the Blob Management.
+>**Important Note**: The order of the text and blob IDs is significant. In this example, "Green choice" will link to the first BlobID, and "Vegan" will link to the second. For more information concerning BlobIDs, please refer to the [Blob Management](Link) documentation.
 
 ## Product properties 
 The `ImportProducts` service can be used to fill custom product properties that already exist in EVA. It is also possible to fill properties that do not yet exist, if you define these properties at root level first.
@@ -336,7 +336,7 @@ Here is a breakdown of each property: 
 
 ### Creating product properties 
 
-To create a custom product property, use [CreateProductPropertyType](/link): 
+To create a custom product property, use the [CreateProductPropertyType](/link): 
 
 ```json
 {
@@ -350,7 +350,7 @@ This service works similarly to our CustomField services, with the exception of 
 
 ### Display values for custom properties 
 
-In order to give your properties custom names to be displayed in front ends, use [EditProductPropertyType]( /link): 
+In order to give your properties custom names to be displayed in front ends, use the [EditProductPropertyType](Link): 
 
 ```json
 {
@@ -408,7 +408,7 @@ Since our custom product property is a simple boolean, this case is straightforw
 >**Note**: As these product properties are part of the content object, they can have different values for each language.
 
 ### Creating product properties in ImportProducts
-If you don't have your property preconfigured, you can provide it in the `ImportProducts` message: 
+If you do not have your property preconfigured, you can provide it in the `ImportProducts` message: 
 
 ```json 
 {
@@ -449,7 +449,7 @@ Using the `ProductPropertyType` called `CopyToParentProductPropertyTypeID`you ca
 
 For instance, if a size-level product is available in "S", "M", and "L", setting `CopyToParentProductPropertyTypeID` on the size property to `available_sizes` ensures that these values are copied to the parent (color-level) and grandparent (style-level) products under the `available_sizes` property.
 
-You can doe this through ImportProducts:
+You can do this through `ImportProducts`:
 
 ```json
 {
@@ -508,7 +508,7 @@ Two settings are used to define this behavior: 
 
 Both accept a comma-separated list of `ProductPropertyTypes`, such as `color_name,color_hex_value`. 
 
-#### Example usage
+See the following example:
 
 When configured, the resulting product content includes a `variations` array: 
 
@@ -531,16 +531,16 @@ When configured, the resulting product content includes a `variations` array: 
   ]
 }
 ```
-Product 123 has two variations available in blue and red, with the type property indicating if they are children or siblings. If the type is "child," the variation is one level below product 123, while if it's "sibling," the variations are on the same level, sharing the same parent.
+Product 123 has two variations available in blue and red, with the type property indicating if they are children or siblings. If the type is "child," the variation is one level below product 123, but if it is "sibling," the variations are on the same level, sharing the same parent.
 
 #### Differences from CopyToParentProductPropertyTypeID
 
-There is a direct reference to the ID of the child/sibling through a product_id property, along with the values of the content. With the CopyToParentProductPropertyTypeID commit, you only get a distinct list of values, with no relation to products. While having just the values is useful for filtering and aggregation, it doesn't work for display or linking.
+There is a direct reference to the ID of the child/sibling through a product_id property, along with the values of the content. With the CopyToParentProductPropertyTypeID commit, you only get a distinct list of values, with no relation to products. While having just the values is useful for filtering and aggregation, it does not work for display or linking.
 
-The contents of variation are entirely unindexed, meaning it's not possible to filter anything inside of it. It's purely intended as enrichment data, not for search or filtering.
+The contents of variation are entirely unindexed, meaning it is not possible to filter anything inside of it. This is intended as enrichment data, not for search or filtering.
 
 >**Note:**
-By default, variations are not returned by SearchProducts or other services that accept an IncludedFields property. You have to request the variations field to include it. Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a ComposeProducts operation. This is not done automatically, as it’s an expensive operation, and you may want to test it by composing a few products first.
+By default, variations are not returned by `SearchProducts` or other services that accept an `IncludedFields` property. You have to request the variations field to include it. Changing the value of these two settings has no immediate effect. The value is only checked when a product is composed. After changing the settings, you should perform a `ComposeProducts` operation. This is not done automatically, and you may want to test it by composing a few products first.
 
 ## Error handling - Failure responses
 
