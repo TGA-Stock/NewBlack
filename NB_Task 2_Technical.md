@@ -1,5 +1,5 @@
 # EVA - Product setup and management
-EVA is an eCommerce system created by New Black to make shopping easier and more seamless for you, your business, and your customers. It helps you connect all your sales channels, ***such as online stores, physical shops, and mobile apps***, into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers.
+EVA is an Unified Commerce system created by New Black to make shopping easier and seamless for you, your business, and your customers. It helps you connect marketing, operational and business systems to all your sales channels, such as online stores, physical shops, and mobile apps, into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers.
 
 This document describes how you can migrate to and manage your product information in EVA. For further context and information concerning the use of EVA, please refer to our User Manual. 
 
@@ -28,8 +28,8 @@ It is necessary to have a basic understanding of EVA features and elements to us
   - Display values for customer properties
   - Product property categories
   - Additional services
-  - Defining values in ImportProducts
-  - Creating product properties in ImportProducts
+  - Defining values in `ImportProducts`
+  - Creating product properties in `ImportProducts`
   - Copying properties to parents
   - Including content of children to parents/siblings
 
@@ -63,7 +63,7 @@ In addition to the SystemID, we provide a unique identifier in the ID field, whi
 
 #### Response 
 
-Every product will be assigned an EvaID upon creation. The response will include the EVA IDs, grouped by whether the products were updated or created. When products are created, they are also considered updated. Additionally, we will return a mapping of BackendID to EvaID.
+Every product will be assigned an EvaID upon creation. The response will include the EVA IDs, grouped by whether the products are updated or created. When products are created, they are also considered updated. Additionally, we will return a mapping of BackendID to EvaID.
 
 ```json 
 { 
@@ -83,7 +83,7 @@ Every product will be assigned an EvaID upon creation. The response will include
 
 A product can have several types: 
 
-To describe your product as being one or more of these types, we use the `Type` object: 
+To describe your product as being one or more of these types, use the `Type` object: 
 
 ```json 
 { 
@@ -162,15 +162,15 @@ Product hierarchy is defined by the `Variations` property. This in turn contai
 
 ### Editing products 
 
-To edit products, just use the same request and alter the information. EVA will know to update the product if the specified `ID` is already in use. 
+To edit products, just use the same request and alter the information. EVA will update the product if the specified `ID` is already in use. 
 
 ### Deleting products 
 
-To delete products, use the same request but include the "IsDeleted": true property for each product. Once set to true, the products will be marked as deleted. It is important to note that while the products are deleted, they remain in EVA with a status of Deleted, and will no longer be visible on the front end.
+To delete products, use the same request but include the `IsDeleted` true property for each product. Once set to true, the products will be marked as deleted. It is important to note that while the products are deleted, they remain in EVA with a status `Deleted`, and will no longer be visible on the front end.
 
 ### Barcodes 
 
-To add a barcode to a product, use the **Barcodes** element. You can also specify a **Barcode** (and its **Quantity**) for an existing [unit of measure](link) in the call to allow for easy scanning. 
+To add a barcode to a product, use the `Barcodes` element. You can specify a `Barcode` and its `Quantity` for an existing `UnitOfMeasure` in a call to allow for easy scanning. 
 
 ```json 
 <Tabs>
@@ -227,7 +227,7 @@ Product content can be included in the 'ImportProducts' service using the 'Conte
 
 ### Images 
 
-In the example below, we associate an image with a product. This is illustrated using a simple product, the "Unisex T-shirt," with a basic image URL provided:
+In the example below, we associate an image with a product. This is done using a simple product, the "Unisex T-shirt," with a basic image URL, as seen in the following example:
 
 ```json
 {
@@ -253,9 +253,7 @@ In the example below, we associate an image with a product. This is illustrated 
 
 ### Languages 
 
-Note that the Content property in the example request below is an array. This allows you to add content for multiple languages.
-
-The Content array enables you to define content for different languages by specifying a LanguageID.
+The Content array enables you to define content for different languages by specifying a `LanguageID`.
 
 In the example below, the product has a short description in Dutch ("nl").
 
@@ -277,9 +275,10 @@ In the example below, the product has a short description in Dutch ("nl").
   ]
 }
 ```
+> **Note**: The Content property in the example request above is an array. This allows you to add content for multiple languages.
 
 ### Native content options 
-EVA can ship native product properties which provide functionalities at the front-end. If you are looking for possibilities beyond our native options, please refer to the [Custom product properties](/link) document.
+EVA can ship native product properties which provide functionalities at the front-end. If you seek possibilities beyond our native options, please refer to the [Custom product properties](/link) document.
 
 ### USP text and USP blobs 
 
@@ -346,11 +345,11 @@ To create a custom product property, use the [CreateProductPropertyType](/link):
 }
 ```
 
-This service works similarly to our CustomField services, with the exception of the TypeID and CategoryID fields.
+This service works similarly to our `CustomField` services, with the exception of the `TypeID` and `CategoryID` fields.
 
 ### Display values for custom properties 
 
-In order to give your properties custom names to be displayed in front ends, use the [EditProductPropertyType](Link): 
+In order to give your properties custom names for display in front ends, use the [EditProductPropertyType](Link): 
 
 ```json
 {
@@ -365,7 +364,7 @@ In order to give your properties custom names to be displayed in front ends, use
   ]
 }
 ```
-Here, `LayerID` represents your contentlayer ID.
+In the above eaxample, `LayerID` represents your contentlayer ID.
 
 ### Product property categories
 You can manage product property categories with the following services:
@@ -373,7 +372,7 @@ You can manage product property categories with the following services:
 - [EditProductPropertyCategory]
 - [ListProductPropertyCategory]
 
->**Note:** Product property categories can't be deleted.
+>**Note:** Product property categories cannot be deleted.
 
 ### Additional services
 The following services are available for managing product property types:
@@ -382,7 +381,7 @@ The following services are available for managing product property types:
 - [ListProductPropertyType]
 
 ### Defining values in ImportProducts
-To add values to the custom product property, we use the `Content` object in `ImportProducts`: 
+To add values to the custom product property, use the `Content` object in `ImportProducts`: 
 
 ```json
 {
@@ -407,7 +406,7 @@ Since our custom product property is a simple boolean, this case is straightforw
 
 >**Note**: As these product properties are part of the content object, they can have different values for each language.
 
-### Creating product properties in ImportProducts
+### Creating product properties in `ImportProducts`
 If you do not have your property preconfigured, you can provide it in the `ImportProducts` message: 
 
 ```json 
@@ -445,7 +444,7 @@ On an e-commerce site overview page, you typically want to display color or styl
 
 Using the `ProductPropertyType` called `CopyToParentProductPropertyTypeID`you can refer to the ID of another property whose value will be copied to its parent. 
 
-#### Example Usage
+See following example:
 
 For instance, if a size-level product is available in "S", "M", and "L", setting `CopyToParentProductPropertyTypeID` on the size property to `available_sizes` ensures that these values are copied to the parent (color-level) and grandparent (style-level) products under the `available_sizes` property.
 
@@ -492,11 +491,11 @@ Example Response From `SearchProducts`: 
 }
 ```
 
->**Note:** Changing the value of `CopyToParentProductPropertyTypeID` for an existing property type affects ONLY products provided in the same request. To apply changes to all products, use the `ComposeProducts` service for a full recompose.
+>**Note:** Changing the value of `CopyToParentProductPropertyTypeID` for an existing property type affects ONLY products provided in the same request. To apply changes to all products, use the `ComposeProducts` service.
 
 ### Including content of children to parents/siblings 
 
-This feature enhances display capabilities by allowing child or sibling content to be included in the parent product. While the previous feature focuses on filtering and aggregation, this functionality is purely for display purposes. 
+This feature enhances display capabilities by allowing child or sibling content to be included in the parent product. While the previous feature focuses on filtering and aggregation, this functionality is for display purposes. 
 
 #### Configuration
 
@@ -508,9 +507,7 @@ Two settings are used to define this behavior: 
 
 Both accept a comma-separated list of `ProductPropertyTypes`, such as `color_name,color_hex_value`. 
 
-See the following example:
-
-When configured, the resulting product content includes a `variations` array: 
+When configured, the resulting product content includes a `variations` array. See the following example: 
 
 ```json
 {
@@ -533,9 +530,9 @@ When configured, the resulting product content includes a `variations` array: 
 ```
 Product 123 has two variations available in blue and red, with the type property indicating if they are children or siblings. If the type is "child," the variation is one level below product 123, but if it is "sibling," the variations are on the same level, sharing the same parent.
 
-#### Differences from CopyToParentProductPropertyTypeID
+#### Differences from `CopyToParentProductPropertyTypeID`
 
-There is a direct reference to the ID of the child/sibling through a product_id property, along with the values of the content. With the CopyToParentProductPropertyTypeID commit, you only get a distinct list of values, with no relation to products. While having just the values is useful for filtering and aggregation, it does not work for display or linking.
+There is a direct reference to the ID of the child/sibling through a product_id property, along with the values of the content. With the `CopyToParentProductPropertyTypeID` commit, you only get a distinct list of values, with no relation to products. While having just the values is useful for filtering and aggregation, it does not work for display or linking.
 
 The contents of variation are entirely unindexed, meaning it is not possible to filter anything inside of it. This is intended as enrichment data, not for search or filtering.
 
