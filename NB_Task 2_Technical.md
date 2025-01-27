@@ -1,7 +1,7 @@
 # EVA - Product setup and management
 EVA is an Unified Commerce system created by New Black to make shopping easier and seamless for you, your business, and your customers. It helps you connect marketing, operational and business systems to all your sales channels, such as online stores, physical shops, and mobile apps, into one system, so you can keep up with modern shopping trends and deliver a smooth, consistent experience to your customers.
 
-This document describes how you can migrate to and manage your product information in EVA. For further context and information concerning the use of EVA, please refer to our User Manual. 
+This document describes how you can migrate to and manage your product information in EVA. For further context and information concerning the use of EVA, please refer to our [User Manual](Link). 
 
 **Level of EVA expertise needed to use this document** - A basic understanding 2/5
 
